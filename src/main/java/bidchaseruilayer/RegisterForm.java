@@ -237,7 +237,6 @@ public class RegisterForm extends javax.swing.JFrame
     private void regRegBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_regRegBtnActionPerformed
     {//GEN-HEADEREND:event_regRegBtnActionPerformed
         String fname = regFirstnameTxt.getText();
-        String fname2 = regFirstnameTxt.getText();
         String lname = regLastnameTxt.getText();
         String uname = regUsernameTxt.getText();
         String pword = Arrays.toString(regPasswordF.getPassword());
