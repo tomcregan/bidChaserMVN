@@ -17,6 +17,8 @@ public class DisplayAuctionsHandler {
      *
      * @return
      */
+    
+    
     public List findAllProducts() {
         List<Document>        currentAuctions = new ArrayList<>();
         MongoCursor<Document> cursor          = null;

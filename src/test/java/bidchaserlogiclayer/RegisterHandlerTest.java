@@ -58,7 +58,7 @@ public class RegisterHandlerTest {
     @Test
     public void testValidateLastname() {
         System.out.println("validateLastname");
-        String lname = "Cregan12343";
+        String lname = "Cregan";
         RegisterHandler instance = new RegisterHandler();
         int expResult = 708114;
         int result = instance.validateLastname(lname);

@@ -1,9 +1,16 @@
 package bidchaserlogiclayer;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import bichaserdataaccesslayer.*;
-import static com.mongodb.client.model.Filters.eq;
-import java.util.*;
+
 import org.bson.Document;
+
+import static com.mongodb.client.model.Filters.eq;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.*;
 
 /**
  *
@@ -21,14 +28,14 @@ public class RegisterHandler {
      * <p>
      * MIN_LENGTH (0) and MAX_FIRSTNAME_LENGTH (20) are defined as private class
      * variables. If the string fails the test at this stage the return
-     * value is set to INVALID_FIRSTNAME_LENGTH (-1).
+     * value is set to INVAL_FNAME_LEN (765205).
      * <p>
      * The second test is to check if the first name contains any non-valid
      * characters.  If the test fails at this stage the return value is set
-     * to INVALID_FIRSTNAME_CHARS (-2).
+     * to INVALID_FNAME_CHARS (765206).
      * <p>
      * If the first name String passes both tests then the return value is set to
-     * VALID_FIRSTNAME (0).
+     * VALID_FIRSTNAME (708113).
      *
      * @param fname              the name to be validated.
      * @return                   current value of the validation process.
@@ -61,14 +68,14 @@ public class RegisterHandler {
      * <p>
      * MIN_LENGTH (0) and MAX_SURNAME_LENGTH (30) are defined as private class
      * variables. If the string fails the test at this stage the return
-     * value is set to INVALID_SURNAME_LENGTH (-1).
+     * value is set to INVALID_SNAME_LEN (765208)
      * <p>
      * The second test is to check if the surname contains any non-valid
      * characters.  If the test fails at this stage the return value is set
-     * to INVALID_SURNAME_CHARS (-2).
+     * to INVALID_SNAME_CHARS (765209).
      * <p>
      * If the surname String passes both tests then the return value is set to
-     * VALID_SURNAME (0).
+     * VALID_SURNAME (708114).
      *
      * @param lname              the name to be validated.
      * @return                   current value of the validation process.
@@ -90,37 +97,37 @@ public class RegisterHandler {
     /**
      * Checks the username of the new user by performing four different tests:
      * <p>
-     * 
-     * 
+     *
+     *
      * Check the length of the string:
      *
      * (a.) cannot be -eq MIN_LENGTH
      * (b.) cannot be -gt MAX_USERNAME_LENGTH
-     * 
+     *
      * <p>
      * MIN_LENGTH (0) and MAX_UNAME_LEN (10) are defined as private class
      * variables. If the string fails the test at this stage the return
      * value is set to INVAL_UNAME_LEN (765217).
      * <p>
-     * 
+     *
      * The second test is to check if the username contains any non-valid
-     * characters. Non-valid characters are any characters that are neither a 
+     * characters. Non-valid characters are any characters that are neither a
      * letter or a digit.If the test fails at this stage the return value is set
      * to INVAL_UNAME_CHARS (765190).
      * <p>
-     * 
+     *
      * <p>
-     * The third test is to check if the usernames first character is invalid. 
+     * The third test is to check if the usernames first character is invalid.
      * If the test fails at this stage the return value is set
      * to INVAL_UNAME_CHAR (765216)
      * <p>
-     * 
+     *
      * <p>
      * The fourth test is to check if the username already exists in the database.
-     * If the test fails at this stage the return value is set to 
+     * If the test fails at this stage the return value is set to
      * INVAL_UNAME_EX (765218)
      * <p>
-     * 
+     *
      * If the username String passes both tests then the return value is set to
      * VALID_UNAME (708115).
      *
@@ -142,26 +149,26 @@ public class RegisterHandler {
     }
 
     /**
-     ** checks the password of the user by performing two tests
+     * checks the password of the user by performing two tests
      * <p>
-     * 
+     *
      * Check the length of the pword:
      *
      * (a.) cannot be -eq MIN_LENGTH
      * (b.) cannot be -gt MAX_PWORD_LENGTH
-     * 
+     *
      * <p>
-     * 
+     *
      * MIN_LENGTH (0) and MAX_PWORD_LEN (12) are defined as private class
      * variables. If the string fails the test at this stage the return
      * value is set to INVAL_PWORD_LEN (765219).
-     * 
+     *
      * The second test is to check that the password contains any non
-     * alpha numeric characters. If the test fails at this stage the return 
+     * alpha numeric characters. If the test fails at this stage the return
      * value is set to INVAL_PWORD_CHARS (765220)
-     * 
-     * @param pword
-     * @return
+     *
+     * @param pword     the users password to be validated
+     * @return          current value of the validation process
      */
     public int validatePassword(String pword) {
         int retval = ValidationCodes.VALID_PASSWORD;
@@ -178,25 +185,28 @@ public class RegisterHandler {
     }
 
     /**
-     * * checks the date of birth of the user by performing four tests
-     * <p>
+     * * * checks the date of birth of the user by performing four tests
+     *  <p>
      * 
-     * Check the dob contains a contains a '/' character and that two '/'
-     * characters exist in the dob. If the test fails at this stage the return
-     * value is set to INVALID_DOB (765224).
+     *  Check the dob contains a contains a '/' character and that two '/'
+     *  characters exist in the dob. If the test fails at this stage the return
+     *  value is set to INVALID_DOB (765224).
      * 
-     * The second test is to check the format of the day, month and year 
-     * strings in the dob entry which must be in dd/mm/yyyy. If the test fails 
-     * at this stage the return value is set to INVALID_DOB (765224)
+     *  The second test is to check the format of the day, month and year
+     *  strings in the dob entry which must be in dd/mm/yyyy. If the test fails
+     *  at this stage the return value is set to INVALID_DOB (765224)
      * 
-     * The third test is to check the if the dayString, monthString and yearString
-     * values contain non numeric characters. If the test fails at this stage
-     * the return value is set to INVALID_DOB (765224)
+     *  The third test is to check the if the dayString, monthString and yearString
+     *  values contain non numeric characters. If the test fails at this stage
+     *  the return value is set to INVALID_DOB (765224)
      * 
-     * The fourth test is to test for the days in a month are between 1 and 31,
-     * the months are between 1 and 12 and that a user
-     * cannot be less than 18 years of age. If the test fails at this stage
-     * the return value is set to INVALID_DOB (765224)
+     *  The fourth test is to test for the days in a month are between 1 and 31,
+     *  the months are between 1 and 12 and that a user
+     *  cannot be less than 18 years of age. If the test fails at this stage
+     *  the return value is set to INVALID_DOB (765224)
+     *
+     * @param dob        the date of birth to be validated
+     * @return           current value of the validation process
      */
     public int validateDOB(String dob) {
         int    retval     = ValidationCodes.VALID_DOB;
@@ -241,24 +251,24 @@ public class RegisterHandler {
     }
 
     /**
-     ** checks the phone number of the user by performing two tests:
-     * 
+     * checks the phone number of the user by performing two tests:
+     *
      * Check the length of the pword:
-     * 
-     *<p>
+     *
+     * <p>
      * (a.) cannot be -eq MIN_LENGTH
      * (b.) cannot be -gt MAX_PNUM_LENGTH
      * <p>
-     * 
+     *
      * The first test checks the users phone number length. If the test fails
      * at this stage the return value is set to INVAL_PNUM_LEN (765221)
-     * 
+     *
      * The second test checks the users phone number for non-numeric characters.
-     * If the test fails at this stage the return value is set to 
+     * If the test fails at this stage the return value is set to
      * INVAL_PNUM_CHARS (765202)
-     * 
-     * @param pnum
-     * @return
+     *
+     * @param pnum      the phone number to be validated
+     * @return          current value of the validation process
      */
     public int validatePhoneNumber(String pnum) {
         int retval = ValidationCodes.VALID_PHONENUMBER;
@@ -275,9 +285,37 @@ public class RegisterHandler {
     }
 
     /**
+     * checks the users email by performing 8 tests:
      *
-     * @param email
-     * @return
+     * Checks the string values preceding the @ symbol. If these values contain a dot
+     * i.e. firstname.lastname, validate them for non valid characters
+     *
+     * The first test checks the emails firstname string. If the test fails
+     * at this stage the return value is set to INVALID_EMAIL (765223)
+     *
+     * The second test checks the emails surname string. If the test fails
+     * at this stage the return value is set to INVALID_EMAIL (765223)
+     *
+     * The third test checks the email preceding the @ without the dot symbol.
+     * If the test fails at this stage the return value is set to INVALID_EMAIL (765223)
+     *
+     * The fourth test checks the email provider for non valid characters
+     * If the test fails at this stage the return value is set to INVALID_EMAIL(765223)
+     *
+     * The fifth test checks the the string after the @ for a dot character.
+     * If the test fails at this stage the return value is set to INVALID_EMAIL 765223)
+     *
+     * The sixth test checks the emailprivider after the @ symbols length.
+     * If the test fails at this stage the return value is set to INVALID_EMAIL (765223)
+     *
+     * The seventh test checks the email provider for non valid characters
+     * If the test fails at this stage the return value is set to INVALID_EMAIL(765223)
+     *
+     * The eigth test checks the email provider for non valid characters
+     * If the test fails at this stage the return value is set to INVALID_EMAIL(765223)
+     *
+     * @param email     the email to be validated
+     * @return          the current value of the validation process
      */
     public int validateEmail(String email) {
         int    retval  = ValidationCodes.VALID_EMAIL;
@@ -314,7 +352,7 @@ public class RegisterHandler {
             retval = ValidationCodes.INVALID_EMAIL;
         }
 
-        if (postAtString.contains(findDot) && (retval == ValidationCodes.VALID_EMAIL)) {
+        if (postAtString.contains(findDot)) {
             String emailProvider = postAtString.substring(0, postAtString.indexOf(findDot));
             String extension     = postAtString.substring(postAtString.indexOf(findDot) + 1, postAtString.length());
 
@@ -333,15 +371,17 @@ public class RegisterHandler {
     }
 
     /**
+     * Registering the new member to Mongo Database. Only run after all validation
+     * has passed
      *
-     * @param fname
-     * @param lname
-     * @param uname
-     * @param pword
-     * @param dob
-     * @param pnum
-     * @param email
-     * @return
+     * @param fname     the first name of the user to be added
+     * @param lname     the last name of the user to be added
+     * @param uname     the user name of the user to be added
+     * @param pword     the password of the user to be added
+     * @param dob       the dob of the user to be added
+     * @param pnum      the phone number of the user o be added
+     * @param email     the email of the user to be added
+     * @return          status of the user registration
      */
     public String registerNewMember(String fname, String lname, String uname, String pword, String dob, String pnum,
                                     String email) {
@@ -358,12 +398,6 @@ public class RegisterHandler {
     /*
      * This method is used to check if the string contains any non-valid
      * characters. Non-valid character is any character that is not a letter.
-     *
-     *
-     *
-     *
-     *
-     *
      */
     private static boolean checkStringForNonValidCharacters(String testString) {
         boolean isValid = true;
@@ -383,13 +417,7 @@ public class RegisterHandler {
 
     /*
      * This method is used to check if the string contains any non-valid
-     * characters. Non-valid character is any character that is not a letter.
-     *
-     *
-     *
-     *
-     *
-     *
+     * characters. Non-valid character is any character that is not a letter
      */
     private static boolean checkStringForNonAlphaNumericCharacters(String testString) {
         boolean isValid = true;
@@ -409,12 +437,6 @@ public class RegisterHandler {
     /*
      * This method is used to check if the string contains any non-valid
      * characters. Non-valid character is any character that is not a letter.
-     *
-     *
-     *
-     *
-     *
-     *
      */
     private static boolean checkStringForNonNumericCharacters(String testString) {
         boolean isValid = true;
@@ -442,12 +464,6 @@ public class RegisterHandler {
     /*
      * This method is used to check if the first character in a string is
      * a letter or not.
-     *
-     *
-     *
-     *
-     *
-     *
      */
     private boolean checkFristCharForNonValidCharacter(String testString) {
         boolean isValid   = true;
@@ -460,14 +476,11 @@ public class RegisterHandler {
         return isValid;
     }
 
-    /**
+    /*
      * This method create a FindIterable object and using the Bson filter, to
      * find the document that is equal to the current username.  If the username
      * document already exists the the username is taken the current user will
      * have to select a new name.
-     *
-     * @param uname the user name of the current user.
-     * @return true if the user name already exists or else false.
      */
     private boolean isMember(String uname) {
         boolean  isMember = false;
@@ -477,7 +490,6 @@ public class RegisterHandler {
         if (username != null) {
             isMember = true;
         }
-
         return isMember;
     }
 }

@@ -19,7 +19,7 @@ public class ValidationCodes {
      * Code for valid product title:
      * decimal = 708097
      */
-    public final static int VALID_TITLE = 0XACE01;
+    public final static int VALID_TITLE = 0xACE01;
 
     /**
      * Code for invalid product title due to the length of the string:
@@ -37,7 +37,7 @@ public class ValidationCodes {
      * Code for valid product description:
      * decimal = 708098
      */
-    public final static int VALID_DESCRIPTION = 0XACE02;
+    public final static int VALID_DESCRIPTION = 0xACE02;
 
     /**
      * Code for invalid product description due to the length of the string:
@@ -49,7 +49,7 @@ public class ValidationCodes {
      * Code for valid product price:
      * decimal = 708099
      */
-    public final static int VALID_PRICE = 0XACE03;
+    public final static int VALID_PRICE = 0xACE03;
 
     /**
      * Code for invalid product price due to an length of the string:
@@ -103,7 +103,7 @@ public class ValidationCodes {
      * Code for valid product end time:
      * decimal = 708102
      */
-    public final static int VALID_ENDTIME = 0XACE06;
+    public final static int VALID_ENDTIME = 0xACE06;
 
     /**
      * Code for invalid product end time due to an length of the string:
@@ -121,7 +121,7 @@ public class ValidationCodes {
      * Code for valid product image:
      * decimal = 708103
      */
-    public final static int VALID_IMAGE = 0XACE07;
+    public final static int VALID_IMAGE = 0xACE07;
 
     /**
      * Code for invalid product image due to illegal image type:
@@ -166,7 +166,7 @@ public class ValidationCodes {
      * Code for valid member first name:
      * decimal = 708113
      */
-    public final static int VALID_FIRSTNAME = 0XACE11;
+    public final static int VALID_FIRSTNAME = 0xACE11;
 
     /**
      * Code for invalid member first name due to an illegal first character:
@@ -190,7 +190,7 @@ public class ValidationCodes {
      * Code for valid member surname:
      * decimal = 708114
      */
-    public final static int VALID_SURNAME = 0XACE12;
+    public final static int VALID_SURNAME = 0xACE12;
 
     /**
      * Code for invalid member surname due to an illegal first character:
@@ -214,7 +214,7 @@ public class ValidationCodes {
      * Code for valid member username:
      * decimal = 708115
      */
-    public final static int VALID_USERNAME = 0XACE13;
+    public final static int VALID_USERNAME = 0xACE13;
 
     /**
      * Code for invalid member username due to an illegal first character:
@@ -238,7 +238,7 @@ public class ValidationCodes {
      * Code for valid member password:
      * decimal = 708116
      */
-    public final static int VALID_PASSWORD = 0XACE14;
+    public final static int VALID_PASSWORD = 0xACE14;
 
     /**
      * Code for invalid member password due to the length of the string:
@@ -256,7 +256,7 @@ public class ValidationCodes {
      * Code for valid member phone number:
      * decimal = 708117
      */
-    public final static int VALID_PHONENUMBER = 0XACE15;
+    public final static int VALID_PHONENUMBER = 0xACE15;
 
     /**
      * Code for invalid member phone number due to the length of the string:
@@ -274,7 +274,7 @@ public class ValidationCodes {
      * Code for valid member email:
      * decimal = 708118
      */
-    public final static int VALID_EMAIL = 0XACE16;
+    public final static int VALID_EMAIL = 0xACE16;
 
     /**
      * Code for invalid member email:
@@ -286,7 +286,7 @@ public class ValidationCodes {
      * Code for valid member date of birth:
      * decimal = 708119
      */
-    public final static int VALID_DOB = 0XACE17;
+    public final static int VALID_DOB = 0xACE17;
 
     /**
      * Code for invalid member date of birth:
