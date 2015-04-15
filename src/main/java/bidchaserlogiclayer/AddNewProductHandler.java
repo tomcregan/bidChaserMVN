@@ -44,7 +44,8 @@ public class AddNewProductHandler {
      * <p>
      * @return the image as a resized Icon
      * <p>
-     * @see ImageIcon
+     * @see ImageIcon 
+     * <a href = "http://docs.oracle.com/javase/7/docs/api/javax/swing/ImageIcon.html">ImageIcon</a>
      */
     public Icon selectProductImage(int height, int width) {
 
@@ -85,7 +86,7 @@ public class AddNewProductHandler {
      * <p>
      * @return the filename
      * <p>
-     * @see File
+     * @see File <a href = "http://docs.oracle.com/javase/7/docs/api/java/io/File.html">File</a>
      */
     public String getFilename() {
         return filename;
@@ -101,10 +102,26 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param productTitle <p>
-     * @return
+     *checks the product title by performing two tests:
+     * 
+     * Check the length of the title:
+     * 
+     *<p>
+     * (a.) cannot be -eq MIN_LENGTH
+     * (b.) cannot be -gt MAX_PRODTITLE_LENGTH
+     * <p>
+     * 
+     * The first test checks the product titles length. If the test fails
+     * at this stage the return value is set to INVAL_TITLE_LEN (765185)
+     * 
+     * The second test checks the product title for non-alphanumeric characters.
+     * If the test fails at this stage the return value is set to 
+     * INVAL_TITLE_CHARS (765186)
+     * 
+     * @param productTitle      the product title to be validated
+     * @return                  the current return value of the validation process
      */
+     
     public int validateTitle(String productTitle) {
         int retval = ValidationCodes.VALID_TITLE;
 
@@ -123,6 +140,7 @@ public class AddNewProductHandler {
      * This is the product description that is read in from the Text Area. The
      * description cannot be empty (length() == 0) and the description can only
      * contain a maximum of 140 characters (length() < 140).
+     * 
      * <p>
      * @param descriptionText the product decscritpion text.
      * <p>
@@ -141,8 +159,23 @@ public class AddNewProductHandler {
 
     /**
      *
-     * @param startPrice <p>
-     * @return
+     * checks the products start price by performing two tests
+     * 
+     * <p>
+     * (a.) cannot be -eq MIN_LENGTH
+     * (b.) cannot be -gt MAX_PRICE_LENGTH
+     * <p>
+     * 
+     * The first test checks the start price length which is limit to 5 i.e 99999.
+     * If the test fails at this stage the return value is set to 
+     * INVAL_PRICE_LEN (765188)
+     * 
+     * The second test checks the start price for non-numeric characters.
+     * If the test fails at this stage the return value is set to
+     * INVAL_PRICE_CHARS (765189)
+     * 
+     * @param startPrice    the products starting price to be validated
+     * @return              the current return value of the validation process
      */
     public int validatePrice(String startPrice) {
         int retval = ValidationCodes.VALID_PRICE;
@@ -158,12 +191,22 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param startDate
+     *checks the start date for the product to be auctioned by performing
+     * two tests.
+     * 
+     * The first test checks the start date for a null value. If the test fails 
+     * at this stage  the return value is set to INVAL_STARTTIME_LEN (765217)
+     * 
+     * The second test checks the start time is not before the present date.
+     * If the test fails at this stage the return value is set to 
+     * INVAL_STARTDATE_TIME (765217)
+     * 
+     * @param startDate     the products auctioning start date 
      * <p>
-     * @return
+     * @return              the current value of the validation process
      * <p>
-     * @see SimpleDateFormat
+     * @see SimpleDateFormat    
+     * <a href = "https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a>
      */
     public int validateStartDate(Date startDate) {
         int retval = ValidationCodes.VALID_STARTDATE;
@@ -193,9 +236,22 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param startTime <p>
-     * @return
+     *checks the products start time to be auctioned by performing three tests:
+     * 
+     * The first test checks the start time for a null value. If the test fails 
+     * at this stage  the return value is set to INVAL_STTIME_LEN (765192)
+     * 
+     * The second test checks the length of start time string. If the test fails
+     * at this stage the return value is set to INVAL_STTIME_TYPE (765193)
+     * 
+     * <p>
+     * (a.) cannot be -eq MIN_LENGTH
+     * (b.) cannot be -gt MAX_PRICE_LENGTH
+     * <p>
+     * 
+     * 
+     * @param startTime         start time to be validated
+     * @return                  current 
      */
     public int validateStartTime(String startTime) {
         int retval = ValidationCodes.VALID_STARTTIME;
@@ -215,9 +271,21 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param endTime <p>
-     * @return
+     *checks the products end time to be auctioned by performing two tests:
+     * 
+     * The first test checks the start time for a null value. If the test fails 
+     * at this stage  the return value is set to INVAL_ENDTIME_LEN (765220)
+     * 
+     * The second test checks the length of start time string. If the test fails
+     * at this stage the return value is set to INVAL_ENDTIME_TYPE (765221)
+     * 
+     * <p>
+     * (a.) cannot be -eq MIN_LENGTH
+     * (b.) cannot be -gt MAX_ETIME_LEN
+     * <p>
+     * 
+     * @param endTime       the end time to be validated
+     * @return              the current value of the validation process
      */
     public int validateEndTime(String endTime) {
         int retval = ValidationCodes.VALID_ENDTIME;
@@ -236,8 +304,9 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param productImage <p>
+     * 
+     * 
+     * @param productImage 
      * @return
      */
     public int validateImage(Image productImage) {
@@ -248,14 +317,17 @@ public class AddNewProductHandler {
     }
 
     /**
-     *
-     * @param productTitle
-     * @param desriptionText
-     * @param startPrice
-     * @param startDate
-     * @param startTime
-     * @param endTime <p>
-     * @return <p>
+     * adding the product to the product collection. Only called after all validation
+     * tests are passed
+     * 
+     * @param productTitle      the title of the product to be added
+     * @param desriptionText    the products description to be added
+     * @param startPrice        the starting price of the product to be added
+     * @param startDate         the starting date of the auction to be added 
+     * @param startTime         the starting time of the product auction to be added
+     * @param endTime           the end time of the product auction to be added          
+     * @return                  the status of the products addition to the database
+     * 
      * @throws Exception
      */
     public String addNewProduct(String productTitle, String desriptionText, String startPrice, Date startDate,
@@ -273,6 +345,11 @@ public class AddNewProductHandler {
                + MongoDBInstance.getInstance().getMongoProductsCollectionName();
     }
 
+    
+    /*
+    *Resizing the image using the Graphics 2D class
+    *
+    */
     private static BufferedImage resizeImage(BufferedImage originalImage, int type, int height, int width) {
         BufferedImage resizedImage = new BufferedImage(width, height, type);
         Graphics2D    g            = resizedImage.createGraphics();
@@ -283,6 +360,9 @@ public class AddNewProductHandler {
         return resizedImage;
     }
 
+    /*
+    * Load the image to a buffer of the file size
+    */
     private static byte[] loadImage(String filePath) throws Exception {
         File   file   = new File(filePath);
         int    size   = (int) file.length();
@@ -316,13 +396,9 @@ public class AddNewProductHandler {
     }    // end method
 
     /*
-     *
-     * @param fileDetails
-     * @param height
-     * @param width
-     * @param BUFFER_SIZE
-     * @return
-     * @throws HeadlessException
+     * Convert the image to a BufferedImage, creates a buffer for image data 
+     * to be stored, then writes the image to jpeg format and reads this image 
+     * data into a buffer to to written to the icon. 
      */
     private ImageIcon writeProductImageIcon(File fileDetails, int height, int width) throws HeadlessException {
         ImageIcon icon = null;
@@ -355,12 +431,7 @@ public class AddNewProductHandler {
     }
 
     /*
-     *
-     * @param fileDetails
-     * @param height
-     * @param width
-     * @return
-     * @throws IOException
+     * Reads the file details, get the image type and resize the image
      */
     private BufferedImage getThumbnailImage(File fileDetails, int height, int width) throws IOException {
 
@@ -374,15 +445,16 @@ public class AddNewProductHandler {
 
     /*
      *
-     * @param jFile
-     * @return
+     * Get the files details of the image chosen by the user
      */
     private File getSelectedFileDetails(JFileChooser jFile) {
 
         // get the details
         File fileDetails = jFile.getSelectedFile();
 
+        //get the url of the image
         setFilepath(fileDetails.getAbsolutePath());
+        //the name of the selected file
         setFilename(fileDetails.getName());
 
         return fileDetails;
@@ -390,8 +462,6 @@ public class AddNewProductHandler {
 
     /*
      *
-     * @return
-     * @throws HeadlessException
      */
     private JFileChooser selectProductImage() throws HeadlessException {
 
@@ -425,9 +495,8 @@ public class AddNewProductHandler {
     }
 
     /*
+     *checks for non numeric characters. 
      *
-     * @param testString
-     * @return
      */
     private boolean checkStringForNonNumericCharacters(String testString) {
         boolean isValid = true;

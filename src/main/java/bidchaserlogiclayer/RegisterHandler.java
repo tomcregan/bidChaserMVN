@@ -494,5 +494,4 @@ public class RegisterHandler {
     }
 }
 
-
 //~ Formatted by Jindent --- http://www.jindent.com

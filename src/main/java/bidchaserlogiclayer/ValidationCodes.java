@@ -157,6 +157,10 @@ public class ValidationCodes {
      * The maximum length of the product end time.
      */
     public final static int MAX_ETIME_LEN = 5;
+        
+    /**
+     * 
+     */
 
     // -------------------------------------------------------------------------
     // --- RegisterHandler ValidationCodes -------------------------------------
