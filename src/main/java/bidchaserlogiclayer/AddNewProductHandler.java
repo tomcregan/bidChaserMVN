@@ -344,7 +344,6 @@ public class AddNewProductHandler {
         return productTitle + ":\n has been added to: \n" + MongoDBInstance.getInstance().getMongoDatabaseName() + "/"
                + MongoDBInstance.getInstance().getMongoProductsCollectionName();
     }
-
     
     /*
     *Resizing the image using the Graphics 2D class

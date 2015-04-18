@@ -2,6 +2,9 @@ package bidchaserlogiclayer;
 
 import bichaserdataaccesslayer.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
 
 /**
  *
@@ -9,15 +12,18 @@ import java.io.*;
  */
 public class RabbitMQSender
 {
-
+    /**
+     * 
+     * @param product 
+     */
     public static void send(String product)
     {
+        
         RabbitMQInstance.getInstance().setUpConnectionFactory();
-        try
-        {
+        try {
             RabbitMQInstance.getInstance().publishProduct(product);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
+            Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

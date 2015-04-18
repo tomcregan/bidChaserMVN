@@ -7,7 +7,10 @@ import java.io.IOException;
  *
  * @author tommy
  */
+
 public class RabbitMQReceiver {
+    
+    
     public static String receive() {
         RabbitMQInstance.getInstance().setUpConnectionFactory();
 

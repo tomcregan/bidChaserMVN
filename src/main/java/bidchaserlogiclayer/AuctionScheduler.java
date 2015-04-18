@@ -27,7 +27,8 @@ public class AuctionScheduler
         updateRabbitMQ(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
         // auctionControl(startTime, endTime);
     }
-
+    
+    
     private void updateRabbitMQ(String productTitle, String descriptionText, String startPrice, Date startDate,
             String startTime, String endTime)
     {

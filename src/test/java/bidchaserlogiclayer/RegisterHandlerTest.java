@@ -148,18 +148,18 @@ public class RegisterHandlerTest {
 //    @Test
 //    public void testRegisterNewMember() {
 //        System.out.println("registerNewMember");
-//        String fname = "";
-//        String lname = "";
-//        String uname = "";
-//        String pword = "";
-//        String dob = "";
-//        String pnum = "";
-//        String email = "";
+//        String fname = "Tommy";
+//        String lname = "Cregan";
+//        String uname = "Silken";
+//        String pword = "pass";
+//        String dob = "12/05/1981";
+//        String pnum = "0868946165";
+//        String email = "tommycregan@live.com";
 //        RegisterHandler instance = new RegisterHandler();
 //        String expResult = "";
 //        String result = instance.registerNewMember(fname, lname, uname, pword, dob, pnum, email);
 //        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
+        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
 //

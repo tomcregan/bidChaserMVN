@@ -33,7 +33,6 @@ public class MongoDBInstance {
         if (instance == null) {
             instance = new MongoDBInstance();
         }
-
         return instance;
     }
 

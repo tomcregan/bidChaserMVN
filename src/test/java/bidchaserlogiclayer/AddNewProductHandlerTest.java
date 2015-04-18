@@ -1,0 +1,238 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package bidchaserlogiclayer;
+
+import java.awt.Image;
+import java.util.Date;
+import javax.swing.Icon;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author tommy
+ */
+public class AddNewProductHandlerTest {
+    
+    public AddNewProductHandlerTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of selectProductImage method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testSelectProductImage() {
+        System.out.println("selectProductImage");
+        int height = 0;
+        int width = 0;
+        AddNewProductHandler instance = new AddNewProductHandler();
+        Icon expResult = null;
+        Icon result = instance.selectProductImage(height, width);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getFilepath method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testGetFilepath() {
+        System.out.println("getFilepath");
+        AddNewProductHandler instance = new AddNewProductHandler();
+        String expResult = "";
+        String result = instance.getFilepath();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setFilepath method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testSetFilepath() {
+        System.out.println("setFilepath");
+        String filepath = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        instance.setFilepath(filepath);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getFilename method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testGetFilename() {
+        System.out.println("getFilename");
+        AddNewProductHandler instance = new AddNewProductHandler();
+        String expResult = "";
+        String result = instance.getFilename();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setFilename method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testSetFilename() {
+        System.out.println("setFilename");
+        String filename = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        instance.setFilename(filename);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateTitle method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateTitle() {
+        System.out.println("validateTitle");
+        String productTitle = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateTitle(productTitle);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateDescription method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateDescription() {
+        System.out.println("validateDescription");
+        String descriptionText = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateDescription(descriptionText);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validatePrice method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidatePrice() {
+        System.out.println("validatePrice");
+        String startPrice = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validatePrice(startPrice);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateStartDate method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateStartDate() {
+        System.out.println("validateStartDate");
+        Date startDate = null;
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateStartDate(startDate);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateStartTime method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateStartTime() {
+        System.out.println("validateStartTime");
+        String startTime = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateStartTime(startTime);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateEndTime method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateEndTime() {
+        System.out.println("validateEndTime");
+        String endTime = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateEndTime(endTime);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of validateImage method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testValidateImage() {
+        System.out.println("validateImage");
+        Image productImage = null;
+        AddNewProductHandler instance = new AddNewProductHandler();
+        int expResult = 0;
+        int result = instance.validateImage(productImage);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addNewProduct method, of class AddNewProductHandler.
+     */
+    @Test
+    public void testAddNewProduct() throws Exception {
+        System.out.println("addNewProduct");
+        String productTitle = "";
+        String desriptionText = "";
+        String startPrice = "";
+        Date startDate = null;
+        String startTime = "";
+        String endTime = "";
+        AddNewProductHandler instance = new AddNewProductHandler();
+        String expResult = "";
+        String result = instance.addNewProduct(productTitle, desriptionText, startPrice, startDate, startTime, endTime);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+}
