@@ -238,11 +238,14 @@ public class RegisterHandler {
                 int dayIntValue   = Integer.parseInt(dayStringValue);
                 int monthIntValue = Integer.parseInt(monthStringValue);
                 int yearIntValue  = Integer.parseInt(yearStringValue);
-                int currentYear   = Calendar.getInstance().get(Calendar.YEAR);
+                int currentYear   = Calendar.getInstance().get(Calendar.YEAR); 
 
-                if (((dayIntValue < 1) || (dayIntValue > 31)) && ((monthIntValue < 1) || (monthIntValue > 12))
+                if (((monthIntValue == 2 && dayIntValue > 28) ||(monthIntValue == 4 || monthIntValue == 6 ||
+                        monthIntValue == 9 || monthIntValue == 11 && dayIntValue > 30) || (dayIntValue < 1) || 
+                        (dayIntValue > 31)) && ((monthIntValue < 1) || (monthIntValue > 12))
                         && (yearIntValue < (currentYear - 18))) {
                     retval = ValidationCodes.INVALID_DOB;
+                    
                 }
             }
         }

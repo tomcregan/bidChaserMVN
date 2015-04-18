@@ -25,7 +25,7 @@ public class AuctionScheduler
                         endTime).append("owner", member.getUsername());
         MongoDBInstance.getInstance().getMongoProductsCollection().insertOne(newAuction);
         updateRabbitMQ(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
-        // auctionControl(startTime, endTime);
+        auctionControl(startTime, endTime);
     }
     
     
@@ -42,11 +42,11 @@ public class AuctionScheduler
         System.out.println(RabbitMQReceiver.receive());
     }
 
-//    private void auctionControl(String startTime, String endTime)
-//    {
-//        AuctionTimer auctionTimer = new AuctionTimer();
-//        auctionTimer.startTimer(startTime, endTime);
-//    }
+    private void auctionControl(String startTime, String endTime)
+    {
+        AuctionTimer auctionTimer = new AuctionTimer();
+        auctionTimer.startTimer(startTime, endTime);
+    }
 }
 
 

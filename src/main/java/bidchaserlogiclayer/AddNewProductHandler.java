@@ -125,12 +125,12 @@ public class AddNewProductHandler {
     public int validateTitle(String productTitle) {
         int retval = ValidationCodes.VALID_TITLE;
 
-        if ((productTitle.length() < ValidationCodes.MIN_LENGTH)
-                || (productTitle.length() > ValidationCodes.MAX_PROC_TITLE)) {
+        if (productTitle.length() > ValidationCodes.MAX_PROC_TITLE) {
             retval = ValidationCodes.INVAL_TITLE_LEN;
         } else if (checkStringForNonAlphaNumericCharacters(productTitle)) {
             retval = ValidationCodes.INVAL_TITLE_CHARS;
         }
+                 
 
         return retval;
     }
@@ -149,11 +149,9 @@ public class AddNewProductHandler {
     public int validateDescription(String descriptionText) {
         int retval = ValidationCodes.VALID_DESCRIPTION;
 
-        if ((descriptionText.length() <= ValidationCodes.MIN_LENGTH)
-                || (descriptionText.length() > ValidationCodes.MAX_DESCR_LEN)) {
-            retval = ValidationCodes.INVAL_DESCR_LEN;
+        if ((descriptionText.length() > ValidationCodes.MAX_DESCR_LEN)) {
+            retval = ValidationCodes.INVAL_DESCR_LEN;                
         }
-
         return retval;
     }
 
@@ -180,15 +178,14 @@ public class AddNewProductHandler {
     public int validatePrice(String startPrice) {
         int retval = ValidationCodes.VALID_PRICE;
 
-        if ((startPrice.length() < ValidationCodes.MIN_LENGTH)
-                || (startPrice.length() > ValidationCodes.MAX_PRICE_LEN)) {
+        if ((startPrice.length() > ValidationCodes.MAX_PRICE_LEN)) {
             retval = ValidationCodes.INVAL_PRICE_LEN;
         } else if (!checkStringForNonNumericCharacters(startPrice)) {
             retval = ValidationCodes.INVAL_PRICE_CHARS;
         }
-
-        return retval;
+       return retval;
     }
+                
 
     /**
      *checks the start date for the product to be auctioned by performing
@@ -218,8 +215,8 @@ public class AddNewProductHandler {
                 Date             dNow = new Date();
                 SimpleDateFormat ft   = new SimpleDateFormat("dd/MM/yyyy");
 
-                System.out.println("Start Date: \t\t" + ft.format(startDate));
-                System.out.println("Current Date: \t\t" + ft.format(dNow));
+                //System.out.println("Start Date: \t\t" + ft.format(startDate));
+                //System.out.println("Current Date: \t\t" + ft.format(dNow));
 
                 Date ftStartDate = ft.parse((ft.format(startDate)));
                 Date ftDateNow   = ft.parse((ft.format(dNow)));
@@ -228,10 +225,9 @@ public class AddNewProductHandler {
                     retval = ValidationCodes.INVAL_STDATE_TIME;
                 }
             } catch (ParseException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
             }
         }
-
         return retval;
     }
 
@@ -259,8 +255,7 @@ public class AddNewProductHandler {
         if (startTime == null) {
             retval = ValidationCodes.INVAL_STTIME_LEN;
         } else {
-            if ((startTime.length() < ValidationCodes.MIN_LENGTH)
-                    || (startTime.length() > ValidationCodes.MAX_STTIME_LEN)) {
+            if ((startTime.length() > ValidationCodes.MAX_STTIME_LEN)) {
 
                 // invalid format
                 retval = ValidationCodes.INVAL_STTIME_TYPE;
@@ -269,6 +264,7 @@ public class AddNewProductHandler {
 
         return retval;
     }
+                    
 
     /**
      *checks the products end time to be auctioned by performing two tests:
@@ -293,7 +289,7 @@ public class AddNewProductHandler {
         if (endTime == null) {
             retval = ValidationCodes.INVAL_ETIME_LEN;
         } else {
-            if ((endTime.length() < ValidationCodes.MIN_LENGTH) || (endTime.length() > ValidationCodes.MAX_ETIME_LEN)) {
+            if ((endTime.length() > ValidationCodes.MAX_ETIME_LEN)) {
 
                 // invalid format
                 retval = ValidationCodes.INVAL_ETIME_TYPE;
@@ -419,11 +415,11 @@ public class AddNewProductHandler {
 
                 icon = new ImageIcon(thumbnail);
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                ioe.printStackTrace(System.out);
             }
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(null, "Images only can be uploaded");
-            ioe.printStackTrace();
+            ioe.printStackTrace(System.out);
         }
 
         return icon;
