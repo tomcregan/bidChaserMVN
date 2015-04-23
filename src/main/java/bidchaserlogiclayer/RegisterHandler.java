@@ -1,6 +1,6 @@
 package bidchaserlogiclayer;
 
-//~--- non-JDK imports --------------------------------------------------------
+
 
 import bichaserdataaccesslayer.*;
 
@@ -8,7 +8,7 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.eq;
 
-//~--- JDK imports ------------------------------------------------------------
+
 
 import java.util.*;
 
@@ -455,14 +455,6 @@ public class RegisterHandler {
 
         return isValid;
     }    // end method
-
-    public void setMemberUsername(String uname) {
-
-        // the username of the member
-        BidChaserMember currentMember = new BidChaserMember();
-
-        currentMember.setUsername(uname);
-    }
 
     /*
      * This method is used to check if the first character in a string is

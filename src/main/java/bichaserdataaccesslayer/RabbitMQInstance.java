@@ -3,20 +3,20 @@ package bichaserdataaccesslayer;
 import com.rabbitmq.client.*;
 import java.io.*;
 import java.util.logging.*;
-import org.bson.Document;
 
 /**
  *
  * @author tommy
+ * 
  */
 public class RabbitMQInstance
 {
     private static RabbitMQInstance instance;
     private final String QUEUE_NAME = "BidChaser";
-    private final String USERNAME = "tommy";
-    private final String PASSWORD = "tommy";
-    private final String VHOST = "tommyvhost";
-    private final String HOST = "192.168.56.101";
+    private final String USERNAME = "zgcjhbdl";
+    private final String PASSWORD = "vMIBKnJATfGqNK7nOQuQFrogc54KiF8w";
+    private final String VHOST = "zgcjhbdl";
+    private final String HOST = "bunny.cloudamqp.com";
     private final int PORT = 5672;
     private Channel channel;
     private Connection connection;
@@ -41,6 +41,7 @@ public class RabbitMQInstance
         }
         return instance;
     }
+    
     /**
      * Create an instance of the Rabbit Client ConnectionFactory
      * for TCP connection to the broker
@@ -176,15 +177,6 @@ public class RabbitMQInstance
         }
     }
 
-    private void setConnection(Connection connection)
-    {
-        this.connection = connection;
-    }
-
-    private Connection getConnection()
-    {
-        return connection;
-    }
 }
 
 

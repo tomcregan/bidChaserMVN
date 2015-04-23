@@ -24,7 +24,6 @@ public class AddNewProductHandler {
      * Instantiate a new AddNewProductHandler object, reset filename + filepath
      * String objects to null.
      * <p>
-     * Creates new AuctionTimer object to start the auction.
      */
     public AddNewProductHandler() {
         filepath = null;
@@ -142,7 +141,7 @@ public class AddNewProductHandler {
      * contain a maximum of 140 characters (length() < 140).
      * 
      * <p>
-     * @param descriptionText the product decscritpion text.
+     * @param descriptionText the product description text.
      * <p>
      * @return the current value of the description validation.
      */
@@ -160,7 +159,6 @@ public class AddNewProductHandler {
      * checks the products start price by performing two tests
      * 
      * <p>
-     * (a.) cannot be -eq MIN_LENGTH
      * (b.) cannot be -gt MAX_PRICE_LENGTH
      * <p>
      * 
@@ -214,9 +212,6 @@ public class AddNewProductHandler {
             try {
                 Date             dNow = new Date();
                 SimpleDateFormat ft   = new SimpleDateFormat("dd/MM/yyyy");
-
-                //System.out.println("Start Date: \t\t" + ft.format(startDate));
-                //System.out.println("Current Date: \t\t" + ft.format(dNow));
 
                 Date ftStartDate = ft.parse((ft.format(startDate)));
                 Date ftDateNow   = ft.parse((ft.format(dNow)));
@@ -394,6 +389,8 @@ public class AddNewProductHandler {
      * Convert the image to a BufferedImage, creates a buffer for image data 
      * to be stored, then writes the image to jpeg format and reads this image 
      * data into a buffer to to written to the icon. 
+    
+     * @see https://www.youtube.com/watch?v=VA6XIk8Xyp4
      */
     private ImageIcon writeProductImageIcon(File fileDetails, int height, int width) throws HeadlessException {
         ImageIcon icon = null;
@@ -447,7 +444,7 @@ public class AddNewProductHandler {
         // get the details
         File fileDetails = jFile.getSelectedFile();
 
-        //get the url of the image
+        //get the url of the image+
         setFilepath(fileDetails.getAbsolutePath());
         //the name of the selected file
         setFilename(fileDetails.getName());

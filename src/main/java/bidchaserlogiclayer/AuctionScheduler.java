@@ -1,8 +1,7 @@
 package bidchaserlogiclayer;
 
-import bichaserdataaccesslayer.*;
 import java.util.*;
-import org.bson.*;
+
 
 /**
  *
@@ -17,13 +16,7 @@ public class AuctionScheduler
 
     public void setupAuction(String productTitle, String descriptionText, String startPrice, Date startDate,
             String startTime, String endTime)
-    {
-        BidChaserMember member = new BidChaserMember();
-        Document newAuction = new Document("productTitle", productTitle).append("desriptionText",
-                descriptionText).append("startPrice", startPrice).append("startDate",
-                        startDate).append("startTime", startTime).append("endTime",
-                        endTime).append("owner", member.getUsername());
-        MongoDBInstance.getInstance().getMongoProductsCollection().insertOne(newAuction);
+    {        
         updateRabbitMQ(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
         auctionControl(startTime, endTime);
     }
