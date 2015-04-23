@@ -18,7 +18,10 @@ public class RabbitMQReceiver {
 
         try {
             reply = RabbitMQInstance.getInstance().comsumeMessage();
-        } catch (IOException ex) {}
+            
+         //save reply
+        } catch (IOException ex) 
+            {ex.printStackTrace(System.out);}
 
         return reply;
     }
