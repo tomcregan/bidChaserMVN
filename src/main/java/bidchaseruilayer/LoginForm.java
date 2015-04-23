@@ -1,5 +1,6 @@
 package bidchaseruilayer;
 
+import bidchaserlogiclayer.BidChaserMember;
 import bidchaserlogiclayer.LoginHandler;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -10,12 +11,8 @@ import javax.swing.JOptionPane;
  */
 public class LoginForm extends javax.swing.JFrame
 {
-	// helper class that contains the logic for logging in
-	private final LoginHandler loginHandler; 
 	
-	// variables used to validate user details
-	private final boolean VALID_MEMBER = true;
-	private final boolean INVALID_MEMBER  = false;
+	private final LoginHandler loginHandler; 
 	
     /**
      * Creates new form LoginForm
@@ -180,13 +177,13 @@ public class LoginForm extends javax.swing.JFrame
 		
 		boolean userDetailsRetval = loginHandler.validateUserDetails(uname, pword);
 		
-		if (userDetailsRetval == VALID_MEMBER)
+		if (userDetailsRetval)
 		{
 			JOptionPane.showMessageDialog(this, uname + ": logged in to Bidchaser App.");
-                        loginHandler.setMemberUsername(uname);
+                        BidChaserMember.setUsername(uname);
 			openSelectActionForm();
 		}
-		else if (userDetailsRetval == INVALID_MEMBER)
+		else 
 		{
 			JOptionPane.showMessageDialog(this, "Error validating: " + uname + " and Password, "
 					+ "Please ensure that you have registered before logging in.");

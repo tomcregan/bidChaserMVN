@@ -67,7 +67,7 @@ public class ValidationCodes {
      * Code for valid product start date:
      * decimal = 708100
      */
-    public final static int VALID_STARTDATE = 0XACE04;
+    public final static int VALID_STARTDATE = 0xACE04;
 
     /**
      * Code for invalid product start date due to an length of the string:

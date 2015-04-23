@@ -12,7 +12,7 @@ import org.bson.*;
 public class DisplayAuctionsForm extends javax.swing.JFrame
 {
 
-    DisplayAuctionsHandler mDisplayAuctionsHandler;
+    private final DisplayAuctionsHandler displayHandler;
 
     /**
      * Creates new form DisplayAuctionsForm
@@ -20,7 +20,7 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
     public DisplayAuctionsForm()
     {
         initComponents();
-        mDisplayAuctionsHandler = new DisplayAuctionsHandler();
+        displayHandler = new DisplayAuctionsHandler();
     }
 
     /**
@@ -114,8 +114,8 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void allAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allAuctionsBtnActionPerformed
-        // TODO add your handling code here:
-        List<Document> currentsProducts = mDisplayAuctionsHandler.findAllProducts();
+        
+        List<Document> currentsProducts = displayHandler.findAllProducts();
         // JAVA API JList
         DefaultListModel<String> model = new DefaultListModel<>();
         System.out.println("Array Size: " + currentsProducts.size());
@@ -131,19 +131,16 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
 
     private void memberAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberAuctionsBtnActionPerformed
     {//GEN-HEADEREND:event_memberAuctionsBtnActionPerformed
-        // TODO add your handling code here:
-        List<Document> currentsProducts = mDisplayAuctionsHandler.findAllProducts();
-        BidChaserMember member = new BidChaserMember();
+        
+        List<Document> currentsProducts = displayHandler.findAllProducts();
         DefaultListModel<String> model = new DefaultListModel<>();
         System.out.println("Array Size: " + currentsProducts.size());
         for (int i = 0; i < currentsProducts.size(); i++)
         {
             System.out.println("allAuctionsBtnActionPerformed()" + currentsProducts.get(i).toJson());
-            // String jsonowername = currentsProducts.get(i).toJson().getOwner();
-            // if (member.getUsername().equalsIgnoreCase(jsonowername))
-            // {
+            
             model.add(i, currentsProducts.get(i).toJson());
-            // }
+            
             displayAllList.setModel(model);
             displayAllList.setSelectedIndex(i);
         }

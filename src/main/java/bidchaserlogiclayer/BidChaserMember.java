@@ -11,24 +11,21 @@ package bidchaserlogiclayer;
  * @author tommy
  */
 public class BidChaserMember {
-    private String username;
+    private static String username;
 
-    public BidChaserMember() {
-        username = null;
-    }
 
     /**
      * @return the username
      */
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
     /**
-     * @param username the username to set
+     * @param uname the username to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public static void setUsername(String uname) {
+        username = uname;
     }
 }
 
