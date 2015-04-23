@@ -1,21 +1,17 @@
 package bidchaserlogiclayer;
 
-//~--- non-JDK imports --------------------------------------------------------
-
 import bichaserdataaccesslayer.*;
-
 import com.mongodb.client.*;
-
-import org.bson.*;
-
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
+import org.bson.*;
 
 /**
  *
  * @author tommy
  */
-public class LoginHandler {
+public class LoginHandler
+{
 
     /**
      * This method is used to validate the member login details. The are checked
@@ -33,8 +29,16 @@ public class LoginHandler {
      * <p>
      * @see FindIterable
      */
-    public boolean validateUserDetails(String uname, String pword) {
+    public boolean validateUserDetails(String uname, String pword)
+    {
         return isMember(uname, pword);
+    }
+
+    public void setMemberUsername(String uname)
+    {
+        // the username of the member
+        BidChaserMember currentMember = new BidChaserMember();
+        currentMember.setUsername(uname);
     }
 
     /**
@@ -46,26 +50,17 @@ public class LoginHandler {
      * @param uname the user name of the current user.
      * <p>
      * @return true if the user name already exists or else false.
-     *
-     * Find the First Document in a Collection
-     *  call the first() method on the result of the find() of method
-     *
-     *@see http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/quick-tour/
-     *   To get the first document in the collection, call the first
-     *   () method on the find() operation. collection.find().first()
-     *   returns the first document or null rather than a cursor. This is
-     *   useful for queries that should only match a single document,
-     *   or if you are interested in the first document only.
      */
-    private boolean isMember(String uname, String pword) {
-        boolean  isMember = false;
-        Document username = MongoDBInstance.getInstance().getMongoMembersCollection().find(and(eq("username", uname),
+    private boolean isMember(String uname, String pword)
+    {
+        boolean isMember = false;
+        Document username
+                = MongoDBInstance.getInstance().getMongoMembersCollection().find(and(eq("username", uname),
                                 eq("password", pword))).first();
-
-        if (username != null) {
+        if (username != null)
+        {
             isMember = true;
         }
-
         return isMember;
     }
 }

@@ -243,27 +243,34 @@ public class RegisterForm extends javax.swing.JFrame
         String dob = regDOBTxt.getText();
         String pnum = regPhoneNumTxt.getText();
         String email = regEmailTxt.getText();
-       
-           
+        
+        
+        int lnameRetval; 
+        int unameRetval; 
+        int pwordRetval; 
+        int dobRetval; 
+        int pnumRetval; 
+        int emailRetval;
+        
         int fnameRetval = regHandler.validateFirstname(fname);
         if (fnameRetval == ValidationCodes.VALID_FIRSTNAME)
         {
-           int lnameRetval = regHandler.validateLastname(lname);
+            lnameRetval = regHandler.validateLastname(lname);
             if (lnameRetval == ValidationCodes.VALID_SURNAME)
             {
-               int unameRetval  = regHandler.validateUsername(uname);
+                unameRetval  = regHandler.validateUsername(uname);
                 if (unameRetval == ValidationCodes.VALID_USERNAME)
                 {
-                   int pwordRetval = regHandler.validatePassword(pword.trim());
+                    pwordRetval = regHandler.validatePassword(pword.trim());
                     if (pwordRetval == ValidationCodes.VALID_PASSWORD)
                     {
-                       int dobRetval = regHandler.validateDOB(dob);
+                        dobRetval = regHandler.validateDOB(dob);
                         if (dobRetval == ValidationCodes.VALID_DOB)
                         {
-                           int pnumRetval = regHandler.validatePhoneNumber(pnum);
+                            pnumRetval = regHandler.validatePhoneNumber(pnum);
                             if (pnumRetval == ValidationCodes.VALID_PHONENUMBER)
                             {
-                               int emailRetval = regHandler.validateEmail(email);
+                                emailRetval = regHandler.validateEmail(email);
                                 if (emailRetval == ValidationCodes.VALID_EMAIL)
                                 {
                                     System.out.println(uname + ": Details Validated");
@@ -275,44 +282,26 @@ public class RegisterForm extends javax.swing.JFrame
                                     
                                     JOptionPane.showMessageDialog(null, reply);
                                     
-                                    //A global variable that is used to store
-                                    //the username for each session                                    
-                                    BidChaserMember.setUsername(uname);
+                                    regHandler.setMemberUsername(uname);
                                     
                                     openSelectActionForm();
                                 }
                                 else
                                 {
-                                    if (emailRetval == ValidationCodes.INVALID_EMAIL)
-                                    {
-                                        JOptionPane.showMessageDialog(null, "email is invalid, must!!!\n"
-                                                + "email cannot must be in the format of firstname.lastname@emailprovider.domain\n"
-                                                + "or firstname@emailprovider.domain");
-                                    }
-                                   
+                                    // TODO: handled email return values
+                                    JOptionPane.showMessageDialog(null, "email fail");
                                 }
                             }
                             else
                             {
-                                if(pnumRetval == ValidationCodes.INVAL_PNUM_LEN)
-                                {
-                                    JOptionPane.showMessageDialog(null, "phone number length!!!\n"
-                                        + "Current length: " + pword.length() + "\n"
-                                        + "Max Length: " + ValidationCodes.MAX_PNUM_LEN);
-                                }
-                                 else if (pnumRetval == ValidationCodes.INVAL_PNUM_CHARS)
-                                {
-                                    JOptionPane.showMessageDialog(null, "phone number contains illegal characters!");
-                                }
+                                // TODO: handled phone number return values
+                                JOptionPane.showMessageDialog(null, "phone number fail");
                             }
                         }
                         else
                         {
-                            if(dobRetval == ValidationCodes.INVALID_DOB)
-                            {
-                                JOptionPane.showMessageDialog(null, "invalid date of birth format!!!\n"
-                                        + "date of birth must be in the format of dd/mm/yyyy.");
-                            }
+                            // TODO: handled date of birth return values
+                            JOptionPane.showMessageDialog(null, "dob fail");
                         }
                     }
                     else

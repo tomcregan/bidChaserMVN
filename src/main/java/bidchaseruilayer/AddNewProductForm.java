@@ -244,25 +244,31 @@ public class AddNewProductForm extends JFrame
             String startPrice, Date startDate, String startTime, String endTime,
             Image productImage)
     {
+        int descriptionRetval;
+        int priceRetval;
+        int startDateRetval;
+        int startTimeRetval;
+        int endTimeRetval;
+        int imageRetval;
         int titleRetval = productHandler.validateTitle(productTitle);
         if (titleRetval == ValidationCodes.VALID_TITLE)
         {
-            int descriptionRetval = productHandler.validateDescription(descriptionText);
+            descriptionRetval = productHandler.validateDescription(descriptionText);
             if (descriptionRetval == ValidationCodes.VALID_DESCRIPTION)
             {
-                int priceRetval = productHandler.validatePrice(startPrice);
+                priceRetval = productHandler.validatePrice(startPrice);
                 if (priceRetval == ValidationCodes.VALID_PRICE)
                 {
-                    int startDateRetval = productHandler.validateStartDate(startDate);
+                    startDateRetval = productHandler.validateStartDate(startDate);
                     if (startDateRetval == ValidationCodes.VALID_STARTDATE)
                     {
-                        int startTimeRetval = productHandler.validateStartTime(startTime);
+                        startTimeRetval = productHandler.validateStartTime(startTime);
                         if (startTimeRetval == ValidationCodes.VALID_STARTTIME)
                         {
-                            int endTimeRetval = productHandler.validateEndTime(endTime);
+                            endTimeRetval = productHandler.validateEndTime(endTime);
                             if (endTimeRetval == ValidationCodes.VALID_ENDTIME)
                             {
-                                int imageRetval = productHandler.validateImage(productImage);
+                                imageRetval = productHandler.validateImage(productImage);
                                 if (imageRetval == ValidationCodes.VALID_IMAGE)
                                 {
                                     String reply;
@@ -271,19 +277,10 @@ public class AddNewProductForm extends JFrame
                                         reply = productHandler.addNewProduct(productTitle,
                                                 descriptionText, startPrice, startDate,
                                                 startTime, endTime);
-                                        
-                                        
                                         JOptionPane.showMessageDialog(this, reply);
-                                        
-                                        
-                                        
                                         AuctionScheduler auctionScheduler = new AuctionScheduler();
-                                        auctionScheduler.setupAuction(productTitle, descriptionText,
-                                                startPrice, startDate, startTime, endTime);
+                                        auctionScheduler.setupAuction(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
                                         openSelectActionForm();
-                                        
-                                        
-                                        
                                     } catch (Exception ex)
                                     {
                                         Logger.getLogger(AddNewProductForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -353,10 +350,7 @@ public class AddNewProductForm extends JFrame
         {
             if (titleRetval == ValidationCodes.INVAL_TITLE_LEN)
             {
-                JOptionPane.showMessageDialog(this,
-                "Product Title Error: cannot be empty or longer than 20 characters!!!",
-                "Product Title Error",
-                JOptionPane.ERROR_MESSAGE);
+                printValidationError("Title", "cannot be empty or longer than 20 characters!!!");
             } else if (titleRetval == ValidationCodes.INVAL_TITLE_CHARS)
             {
                 printValidationError("Title", "cannot contain illegal characters (Non Alpha-Numeric))!!!");

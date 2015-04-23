@@ -5,7 +5,6 @@ import com.mongodb.client.*;
 import org.bson.Document;
 
 /**
- * @see http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/quick-tour/
  *
  * @author tommy
  */
@@ -19,7 +18,7 @@ public class MongoDBInstance {
     private final String           MONGO_AUCTION_COLLECTION  = "Auctions";
 
     /**
-     *@see "http://www.tutorialspoint.com/java/java_using_singleton.htm"
+     *
      */
     protected MongoDBInstance() {
 
@@ -39,7 +38,6 @@ public class MongoDBInstance {
 
     /*
      * This method is used to get the mongodb connection String.
-     * 
      */
     private String getMongoConnectionString() {
         return "mongodb://" + getMongoPassword() + ":" + getMongoUsername() + "@ds049171.mongolab.com:49171/"
@@ -112,14 +110,14 @@ public class MongoDBInstance {
     /**
      * @return the MONGO_USERNAME
      */
-    private String getMongoUsername() {
+    public String getMongoUsername() {
         return MONGO_USERNAME;
     }
 
     /**
      * @return the MONGO_PASSWORD
      */
-    private String getMongoPassword() {
+    public String getMongoPassword() {
         return MONGO_PASSWORD;
     }
 
