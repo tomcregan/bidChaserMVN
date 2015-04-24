@@ -4,9 +4,16 @@ import com.mongodb.*;
 import com.mongodb.client.*;
 import org.bson.Document;
 
-/**
- * @see http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/quick-tour/
- *
+/*
+ **************************************************
+ * Title: Java - How to use Singleton Class?
+ * Author: Tutorials Point: SimplyEasyLearning
+ * Site Owner: tutorialspoint.com
+ * Date 2015
+ * Availibilty: http://www.tutorialspoint.com/java/java_using_singleton.htm 
+ * (Accessed March 2015)
+ * 
+ * *************************************************
  * @author tommy
  */
 public class MongoDBInstance {
@@ -18,9 +25,6 @@ public class MongoDBInstance {
     private final String           MONGO_PRODUCTS_COLLECTION = "Products";
     private final String           MONGO_AUCTION_COLLECTION  = "Auctions";
 
-    /**
-     *@see "http://www.tutorialspoint.com/java/java_using_singleton.htm"
-     */
     protected MongoDBInstance() {
 
         // Exists only to defeat instantiation.
@@ -28,6 +32,7 @@ public class MongoDBInstance {
 
     /**
      *
+     * 
      * @return
      */
     public static MongoDBInstance getInstance() {
@@ -35,43 +40,73 @@ public class MongoDBInstance {
             instance = new MongoDBInstance();
         }
         return instance;
-    }
+    }//End of [non-original or refactored code
 
+    
     /*
+     *
+     **************************************************
+     * Title: Connection Settings - MongoClient
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     *
      * This method is used to get the mongodb connection String.
      * 
      */
     private String getMongoConnectionString() {
-        return "mongodb://" + getMongoPassword() + ":" + getMongoUsername() + "@ds049171.mongolab.com:49171/"
+        return "mongodb://" + getMongoPassword() + ":" + getMongoUsername() 
+               + "@ds049171.mongolab.com:49171/"
                + getMongoDatabaseName();
     }
 
+    /*
+     *
+     **************************************************
+     * Title: Connection Settings - Make a Connection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     *
+     * This method is used to get the mongodb database name.
+     * 
+     */
     private MongoDatabase getMongoDatabase() {
         MongoClient   mongoClient = new MongoClient(new MongoClientURI(getMongoConnectionString()));
         MongoDatabase db          = mongoClient.getDatabase(getMongoDatabaseName());
 
         return db;
     }
+    
+    
 
     /**
-     *
-     * @return
+     * This method is used to get the database name for connection 
+     * @return      
      */
     public DB getMongoDB() {
         MongoClient mongoClient = new MongoClient(new MongoClientURI(getMongoConnectionString()));
         DB          db          = mongoClient.getDB(MongoDBInstance.getInstance().getMongoDatabaseName());
 
         return db;
+        
     }
 
-    /*
-     * This method is used to get the mongodb membesr collection that is going to
-     * be written to by the user.
-     */
-
     /**
-     *
-     * @return
+     * This method is used to get the mongodb members collection that is going to
+     * be written to by the user.
+     * 
+     * @return 
      */
     public MongoCollection<Document> getMongoMembersCollection() {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoMembersCollectionName());
@@ -92,34 +127,25 @@ public class MongoDBInstance {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoProductsCollectionName());
 
         return collection;
-    }
+    }//End of [non-original or refactored] code
 
     /*
      * This method is used to get the mongodb products collection that is going to
      * be written to by the user.
      */
 
-    /**
-     *
-     * @return
-     */
-    public MongoCollection<Document> getMongoAuctionsCollection() {
-        MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoAuctionsCollectionName());
-
-        return collection;
-    }
 
     /**
      * @return the MONGO_USERNAME
      */
-    private String getMongoUsername() {
+    public String getMongoUsername() {
         return MONGO_USERNAME;
     }
 
     /**
      * @return the MONGO_PASSWORD
      */
-    private String getMongoPassword() {
+    public String getMongoPassword() {
         return MONGO_PASSWORD;
     }
 
