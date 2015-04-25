@@ -117,7 +117,7 @@ public class AddNewProductHandlerTest {
         System.out.println("validateDescription");
         String descriptionText = "";
         AddNewProductHandler instance = new AddNewProductHandler();
-        int expResult = 765187;
+        int expResult = 708098;
         int result = instance.validateDescription(descriptionText);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
