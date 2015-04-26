@@ -9,7 +9,7 @@ import org.bson.*;
  *
  * @author tommy
  */
-public class DisplayAuctionsForm extends javax.swing.JFrame
+public class DisplayAuctionsForm extends javax.swing.JFrame 
 {
 
     private final DisplayAuctionsHandler displayHandler;
@@ -22,6 +22,8 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         initComponents();
         displayHandler = new DisplayAuctionsHandler();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +32,7 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         allAuctionsBtn = new javax.swing.JButton();
         memberAuctionsBtn = new javax.swing.JButton();
@@ -43,25 +44,20 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         allAuctionsBtn.setText("Display All Auctions");
-        allAuctionsBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        allAuctionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allAuctionsBtnActionPerformed(evt);
             }
         });
 
         memberAuctionsBtn.setText("Display Member Auctions");
-        memberAuctionsBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        memberAuctionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 memberAuctionsBtnActionPerformed(evt);
             }
         });
 
-        displayAllList.setModel(new javax.swing.AbstractListModel()
-        {
+        displayAllList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -69,8 +65,7 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         displayAllList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(displayAllList);
 
-        displayMemList.setModel(new javax.swing.AbstractListModel()
-        {
+        displayMemList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -113,8 +108,13 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void allAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allAuctionsBtnActionPerformed
+    private void memberAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberAuctionsBtnActionPerformed
+    {//GEN-HEADEREND:event_memberAuctionsBtnActionPerformed
         
+    }//GEN-LAST:event_memberAuctionsBtnActionPerformed
+
+    private void allAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allAuctionsBtnActionPerformed
+
         List<Document> currentsProducts = displayHandler.findAllProducts();
         // JAVA API JList
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -128,23 +128,6 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
             displayAllList.setSelectedIndex(i);
         }
     }//GEN-LAST:event_allAuctionsBtnActionPerformed
-
-    private void memberAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberAuctionsBtnActionPerformed
-    {//GEN-HEADEREND:event_memberAuctionsBtnActionPerformed
-        
-        List<Document> currentsProducts = displayHandler.findAllProducts();
-        DefaultListModel<String> model = new DefaultListModel<>();
-        System.out.println("Array Size: " + currentsProducts.size());
-        for (int i = 0; i < currentsProducts.size(); i++)
-        {
-            System.out.println("allAuctionsBtnActionPerformed()" + currentsProducts.get(i).toJson());
-            
-            model.add(i, currentsProducts.get(i).toJson());
-            
-            displayAllList.setModel(model);
-            displayAllList.setSelectedIndex(i);
-        }
-    }//GEN-LAST:event_memberAuctionsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +172,13 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
                 new DisplayAuctionsForm().setVisible(true);
             }
         });
+    }
+    
+    public void openSelectActionForm()
+    {
+        SelectActionForm sa = new SelectActionForm();
+        this.setVisible(false);
+        sa.setVisible(true);   
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

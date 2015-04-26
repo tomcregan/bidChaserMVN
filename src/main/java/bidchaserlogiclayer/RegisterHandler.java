@@ -2,7 +2,7 @@ package bidchaserlogiclayer;
 
 
 
-import bichaserdataaccesslayer.*;
+import bidchaserdataaccesslayer.MongoDBInstance;
 
 import org.bson.Document;
 
@@ -23,8 +23,8 @@ public class RegisterHandler {
      * <p>
      * Check the length of the string:
      *
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_FIRSTNAME_LENGTH
+ 
+     * cannot be -gt MAX_FIRSTNAME_LENGTH
      * <p>
      * MIN_LENGTH (0) and MAX_FIRSTNAME_LENGTH (20) are defined as private class
      * variables. If the string fails the test at this stage the return
@@ -46,14 +46,10 @@ public class RegisterHandler {
         if (fname.length() > ValidationCodes.MAX_FNAME_LEN) {
             retval = ValidationCodes.INVAL_FNAME_LEN;
         } else {
-            if (!checkFristCharForNonValidCharacter(fname)) {
-                retval = ValidationCodes.INVAL_FNAME_CHAR;
-            } else {
                 if (!checkStringForNonValidCharacters(fname)) {
                     retval = ValidationCodes.INVAL_FNAME_CHARS;
                 }
             }
-        }
 
         return retval;
     }
@@ -83,7 +79,7 @@ public class RegisterHandler {
     public int validateLastname(String lname) {
         int retval = ValidationCodes.VALID_SURNAME;
 
-        if (!checkFristCharForNonValidCharacter(lname)) {
+        if (!checkFirstCharIsValid(lname)) {
             retval = ValidationCodes.INVAL_SNAME_CHAR;
         } else if (lname.length() > ValidationCodes.MAX_SNAME_LEN) {
             retval = ValidationCodes.INVAL_SNAME_LEN;
@@ -137,7 +133,7 @@ public class RegisterHandler {
     public int validateUsername(String uname) {
         int retval = ValidationCodes.VALID_USERNAME;
 
-        if (!checkFristCharForNonValidCharacter(uname)) {
+        if (!checkFirstCharIsValid(uname)) {
             retval = ValidationCodes.INVAL_UNAME_CHAR;
         } else if (uname.length() > ValidationCodes.MAX_UNAME_LEN) {
             retval = ValidationCodes.INVAL_UNAME_LEN;
@@ -409,7 +405,7 @@ public class RegisterHandler {
         for (int i = 0; i < testString.length(); i++) {
             ch = testString.charAt(i);
 
-            // printString("" + ch);
+            
             if (!Character.isLetter(ch)) {
                 isValid = false;
             }
@@ -460,7 +456,7 @@ public class RegisterHandler {
      * This method is used to check if the first character in a string is
      * a letter or not.
      */
-    private boolean checkFristCharForNonValidCharacter(String testString) {
+    private boolean checkFirstCharIsValid(String testString) {
         boolean isValid   = true;
         char    firstChar = testString.charAt(0);
 

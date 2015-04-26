@@ -1,6 +1,6 @@
 package bidchaserlogiclayer;
 
-import bichaserdataaccesslayer.*;
+import bidchaserdataaccesslayer.MongoDBInstance;
 import com.mongodb.gridfs.*;
 import java.awt.*;
 import java.awt.image.*;

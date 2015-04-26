@@ -1,7 +1,7 @@
 package bidchaserlogiclayer;
 
 
-import bichaserdataaccesslayer.MongoDBInstance;
+import bidchaserdataaccesslayer.MongoDBInstance;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import java.util.List;

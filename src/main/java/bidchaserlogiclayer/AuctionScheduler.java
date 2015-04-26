@@ -1,6 +1,10 @@
 package bidchaserlogiclayer;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
 
 
 /**
@@ -25,14 +29,23 @@ public class AuctionScheduler
     private void updateRabbitMQ(String productTitle, String descriptionText, String startPrice, Date startDate,
             String startTime, String endTime)
     {
-        String message = "productTitle, " + productTitle
-                + "\ndescriptionText, " + descriptionText
-                + "\nstartPrice, " + startPrice
-                + "\nstartDate, " + startDate
-                + "\nstartTime, " + startTime
-                + "\nendTime, " + endTime;
-        RabbitMQSender.send(message);
-        System.out.println(RabbitMQReceiver.receive());
+        Document message = new Document("productTitle", productTitle).append("descriptionText",
+                                          descriptionText).append("startPrice", startPrice).append("startDate",
+                                              startDate).append("startTime", startTime).append("endTime",
+                                                  endTime);
+        try {
+            try {
+                RabbitMQReceiver.receive();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RabbitMQSender.send(message);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println(RabbitMQReceiver.consumer());
     }
 
     private void auctionControl(String startTime, String endTime)

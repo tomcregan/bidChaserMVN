@@ -1,4 +1,4 @@
-package bichaserdataaccesslayer;
+package bidchaserdataaccesslayer;
 
 import com.mongodb.*;
 import com.mongodb.client.*;
@@ -23,6 +23,7 @@ public class MongoDBInstance {
     private final String           MONGO_DATABASE            = "bidchaser";
     private final String           MONGO_MEMBERS_COLLECTION  = "Members";
     private final String           MONGO_PRODUCTS_COLLECTION = "Products";
+    private final String MONGO_BIDS_COLLECTION = "Bids";
     private final String           MONGO_AUCTION_COLLECTION  = "Auctions";
 
     protected MongoDBInstance() {
@@ -32,8 +33,7 @@ public class MongoDBInstance {
 
     /**
      *
-     * 
-     * @return
+     * @return     
      */
     public static MongoDBInstance getInstance() {
         if (instance == null) {
@@ -90,19 +90,43 @@ public class MongoDBInstance {
     
     
 
-    /**
+    /*
+     *
+     **************************************************
+     * Title: Connection Settings - Get a Collection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     *
+     * This method is used to get the mongodb database name.
+     *     
      * This method is used to get the database name for connection 
-     * @return      
+     * @return      mongo database name     
      */
     public DB getMongoDB() {
         MongoClient mongoClient = new MongoClient(new MongoClientURI(getMongoConnectionString()));
         DB          db          = mongoClient.getDB(MongoDBInstance.getInstance().getMongoDatabaseName());
 
-        return db;
-        
-    }
+        return db;       
+    }//End of [non-original or refactored] code
 
-    /**
+    /*
+     *
+     **************************************************
+     * Title: Connection Settings - Get a Collection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
      * This method is used to get the mongodb members collection that is going to
      * be written to by the user.
      * 
@@ -112,16 +136,25 @@ public class MongoDBInstance {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoMembersCollectionName());
 
         return collection;
-    }
+    }//End of [non-original or refactored] code
 
     /*
+     *
+     **************************************************
+     * Title: Connection Settings - Get a Collection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     *
      * This method is used to get the mongodb products collection that is going to
      * be written to by the user.
-     */
-
-    /**
      *
-     * @return
+     * @return      mongo products collection
      */
     public MongoCollection<Document> getMongoProductsCollection() {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoProductsCollectionName());
@@ -130,10 +163,47 @@ public class MongoDBInstance {
     }//End of [non-original or refactored] code
 
     /*
-     * This method is used to get the mongodb products collection that is going to
+     *
+     **************************************************
+     * Title: Connection Settings - Get a Collection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     * This method is used to get the mongodb bids collection that is going to
      * be written to by the user.
      */
+    public MongoCollection<Document> getMongoBidsCollection(){
+        MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoBidsCollectionName());
 
+        return collection;
+    }
+    
+    
+    /*
+     *
+     **************************************************
+     * Title: Connection Settings - Get a Collection
+     * Author: mongoDB
+     * Site Owner: MongoDB.org
+     * Date 2015
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
+                   /reference/connecting/connection-settings/ 
+     * (Accessed March 2015)
+     *
+     **************************************************
+     * This method is used to get the mongodb bids collection that is going to
+     * be written to by the user.
+     */
+    public MongoCollection<Document> getMongoAuctionsCollection(){
+        MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoAuctionsCollectionName());
+
+        return collection;
+    }
 
     /**
      * @return the MONGO_USERNAME
@@ -175,6 +245,10 @@ public class MongoDBInstance {
      */
     public String getMongoAuctionsCollectionName() {
         return MONGO_AUCTION_COLLECTION;
+    }
+    
+    public String getMongoBidsCollectionName(){
+        return MONGO_BIDS_COLLECTION;
     }
 }
 
