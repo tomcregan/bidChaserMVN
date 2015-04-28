@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bidchaserlogiclayer;
 
 import org.junit.After;
@@ -48,8 +43,7 @@ public class RegisterHandlerTest {
         int expResult = 708113;
         int result = instance.validateFirstname(fname);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -63,8 +57,7 @@ public class RegisterHandlerTest {
         int expResult = 708114;
         int result = instance.validateLastname(lname);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -78,8 +71,7 @@ public class RegisterHandlerTest {
         int expResult = 708115;
         int result = instance.validateUsername(uname);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -93,8 +85,7 @@ public class RegisterHandlerTest {
         int expResult = 765220;
         int result = instance.validatePassword(pword);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -108,8 +99,7 @@ public class RegisterHandlerTest {
         int expResult = 708119;
         int result = instance.validateDOB(dob);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -123,8 +113,7 @@ public class RegisterHandlerTest {
         int expResult = 708117;
         int result = instance.validatePhoneNumber(pnum);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -138,42 +127,8 @@ public class RegisterHandlerTest {
         int expResult = 708118;
         int result = instance.validateEmail(email);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
-    /**
-     * Test of registerNewMember method, of class RegisterHandler.
-     */
-//    @Test
-//    public void testRegisterNewMember() {
-//        System.out.println("registerNewMember");
-//        String fname = "Tommy";
-//        String lname = "Cregan";
-//        String uname = "Silken";
-//        String pword = "pass";
-//        String dob = "12/05/1981";
-//        String pnum = "0868946165";
-//        String email = "tommycregan@live.com";
-//        RegisterHandler instance = new RegisterHandler();
-//        String expResult = "";
-//        String result = instance.registerNewMember(fname, lname, uname, pword, dob, pnum, email);
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setMemberUsername method, of class RegisterHandler.
-//     */
-//    @Test
-//    public void testSetMemberUsername() {
-//        System.out.println("setMemberUsername");
-//        String uname = "";
-//        RegisterHandler instance = new RegisterHandler();
-//        instance.setMemberUsername(uname);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
     
 }

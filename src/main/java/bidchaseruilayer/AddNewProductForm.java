@@ -14,8 +14,7 @@ public class AddNewProductForm extends JFrame
 {
 
     private final AddNewProductHandler productHandler;
-    private String msg;
-    private String errMsg;
+
 
     /**
      * Creates new form AddNewProductForm
@@ -292,61 +291,58 @@ public class AddNewProductForm extends JFrame
                                 {
                                     if (imageRetval == ValidationCodes.INVAL_IMAGE_TYPE)
                                     {
-                                        printValidationError("Image", "illegal image type!!!");
-                                    } else
-                                    {
-                                        printValidationError("Image", "unknown error reading image!!!");
+                                        JOptionPane.showMessageDialog(null, "illegal image type!!!");
                                     }
                                 }
                             } else
                             {
                                 if (endTimeRetval == ValidationCodes.INVAL_ETIME_LEN)
                                 {
-                                    printValidationError("End Time", "cannot be empty!!!");
+                                    JOptionPane.showMessageDialog(null, " endTime cannot be empty!!!");
                                 } else if (endTimeRetval == ValidationCodes.INVAL_ETIME_TYPE)
                                 {
-                                    printValidationError("End Time", "illegal time format!!!");
+                                    JOptionPane.showMessageDialog(null, "illegal time format!!!");
                                 }
                             }
                         } else
                         {
                             if (startTimeRetval == ValidationCodes.INVAL_STTIME_LEN)
                             {
-                                printValidationError("Start Time", "cannot be empty!!!");
+                                JOptionPane.showMessageDialog(null, "start time length invalid");
                             } else if (startTimeRetval == ValidationCodes.INVAL_STTIME_TYPE)
                             {
-                                printValidationError("Start Time", "illegal time format!!!");
+                                JOptionPane.showMessageDialog(null, "illegal start time format!!!");
                             }
                         }
                     } else
                     {
                         if (startDateRetval == ValidationCodes.INVAL_STDATE_LEN)
                         {
-                            printValidationError("Start Date", "cannot be empty!!!");
+                            JOptionPane.showMessageDialog(null, "start date length is invalid");
                         } else if (startDateRetval == ValidationCodes.INVAL_STDATE_TIME)
                         {
-                            printValidationError("Start Date", "illegal date format!!!");
+                            JOptionPane.showMessageDialog(null, "illegal start date format!!!");
                         }
                     }
                 } else
                 {
                     if (priceRetval == ValidationCodes.INVAL_PRICE_LEN)
                     {
-                        printValidationError("Price", "cannot be empty or longer than "
+                        JOptionPane.showMessageDialog(null, " start price cannot be empty or longer than "
                                 + ValidationCodes.MAX_PRICE_LEN + " characters!!!");
                     } else if (priceRetval == ValidationCodes.INVAL_PRICE_CHARS)
                     {
-                        printValidationError("Price", "cannot contain illegal characters (Non Numeric))!!!");
+                        JOptionPane.showMessageDialog(null, " start price cannot contain illegal characters (Non Numeric))!!!");
                     }
                 }
             } else
             {
                 if (descriptionRetval == ValidationCodes.INVAL_DESCR_LEN)
                 {
-                    printValidationError("Description", "cannot be empty or longer than 140 characters!!!");
+                    JOptionPane.showMessageDialog(null, "cannot be empty or longer than 140 characters!!!");
                 } else
                 {
-                    printValidationError("Description", "unkown error reading description text!!!");
+                    JOptionPane.showMessageDialog(null, "unkown error reading description text!!!");
                 }
             }
         } else
@@ -354,44 +350,14 @@ public class AddNewProductForm extends JFrame
             if (titleRetval == ValidationCodes.INVAL_TITLE_LEN)
             {
                 JOptionPane.showMessageDialog(this,
-                "Product Title Error: cannot be empty or longer than 20 characters!!!",
+                "Product Title Error: cannot be empty or longer than" + ValidationCodes.MAX_PROC_TITLE + " characters!!!",
                 "Product Title Error",
                 JOptionPane.ERROR_MESSAGE);
             } else if (titleRetval == ValidationCodes.INVAL_TITLE_CHARS)
             {
-                printValidationError("Title", "cannot contain illegal characters (Non Alpha-Numeric))!!!");
+                JOptionPane.showMessageDialog(null, "Title cannot contain illegal characters (Non Alpha-Numeric))!!!");
             }
         }
-    }
-
-    private void printValidationError(String msgFrom, String printMsg)
-    {
-        setMsgFrom(msgFrom);
-        setErrorMessage(printMsg);
-        JOptionPane.showMessageDialog(this,
-                "The Product " + getMsgFrom() + " Error: " + getErrorMessage(),
-                "Product " + getMsgFrom() + " Error",
-                JOptionPane.ERROR_MESSAGE);
-    }
-
-    private void setMsgFrom(String msg)
-    {
-        this.msg = msg;
-    }
-
-    private String getMsgFrom()
-    {
-        return msg;
-    }
-
-    private void setErrorMessage(String errMsg)
-    {
-        this.errMsg = errMsg;
-    }
-
-    private String getErrorMessage()
-    {
-        return errMsg;
     }
 
     private void openSelectActionForm()

@@ -62,7 +62,7 @@ public class RegisterHandler {
      * (a.) cannot be -eq MIN_LENGTH
      * (b.) cannot be -gt MAX_SURNAME_LENGTH
      * <p>
-     * MIN_LENGTH (0) and MAX_SURNAME_LENGTH (30) are defined as private class
+     * MAX_SURNAME_LENGTH (30) is defined as private class
      * variables. If the string fails the test at this stage the return
      * value is set to INVALID_SNAME_LEN (765208)
      * <p>
