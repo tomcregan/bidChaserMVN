@@ -1,15 +1,9 @@
 package bidchaserlogiclayer;
 
 
-
 import bidchaserdataaccesslayer.MongoDBInstance;
-
 import org.bson.Document;
-
 import static com.mongodb.client.model.Filters.eq;
-
-
-
 import java.util.*;
 
 /**
@@ -149,13 +143,12 @@ public class RegisterHandler {
      * <p>
      *
      * Check the length of the pword:
-     *
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_PWORD_LENGTH
+     * 
+     *cannot be -gt MAX_PWORD_LENGTH
      *
      * <p>
      *
-     * MIN_LENGTH (0) and MAX_PWORD_LEN (12) are defined as private class
+     * MAX_PWORD_LEN (12) are defined as private class
      * variables. If the string fails the test at this stage the return
      * value is set to INVAL_PWORD_LEN (765219).
      *
@@ -255,8 +248,7 @@ public class RegisterHandler {
      * Check the length of the pword:
      *
      * <p>
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_PNUM_LENGTH
+     * cannot be -gt MAX_PNUM_LENGTH
      * <p>
      *
      * The first test checks the users phone number length. If the test fails
@@ -350,7 +342,7 @@ public class RegisterHandler {
         } else {
             retval = ValidationCodes.INVALID_EMAIL;
         }
-
+        
         if (postAtString.contains(findDot)) {
             String emailProvider = postAtString.substring(0, postAtString.indexOf(findDot));
             String extension     = postAtString.substring(postAtString.indexOf(findDot) + 1, postAtString.length());

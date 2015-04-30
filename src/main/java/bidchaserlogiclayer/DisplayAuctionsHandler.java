@@ -13,10 +13,7 @@ import org.bson.Document;
  */
 public class DisplayAuctionsHandler {
 
-    /**
-     *
-     * @return
-     */
+    
     
     
     public List findAllProducts() {

@@ -175,14 +175,17 @@ public class LoginForm extends javax.swing.JFrame
         String uname = loginUsernameTxt.getText();
 		String pword = Arrays.toString(loginPasswordF.getPassword());
 		
+                // initialise the users credentails to the validation in the handler
 		boolean userDetailsRetval = loginHandler.validateUserDetails(uname, pword);
 		
+                //if true
 		if (userDetailsRetval)
 		{
 			JOptionPane.showMessageDialog(this, uname + ": logged in to Bidchaser App.");
                         BidChaserMember.setUsername(uname);
 			openSelectActionForm();
 		}
+                //if false
 		else 
 		{
 			JOptionPane.showMessageDialog(this, "Error validating: " + uname + " and Password, "

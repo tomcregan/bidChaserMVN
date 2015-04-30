@@ -18,13 +18,11 @@ import java.util.logging.Logger;
 public class RabbitMQReceiver {
     
     
-    private static final String EXCHANGE_NAME = "topic_bid_ex";
-    private static final String EXCHANGE_ND = "topic_bidND";
-    private final static String Q_NAME_D = "bid_durable";
+    private static final String DURABLE_EX = "topic_durable";
+    private final static String Q_NAME_D = "bid_durable_q";
     private final static String Q_NAME_ND = "bid_non_durable";
-    //private final static String Q_NAME_D_BASICACK = "bid_basic_ack";
     private static QueueingConsumer consumer;
-    private static QueueingConsumer consumer2;
+    
 
     /**
      * Method description
@@ -38,47 +36,29 @@ public class RabbitMQReceiver {
     public static void receive() throws IOException, InterruptedException{
         Connection connection = RabbitMQInstance.getInstance().getConnection();
         startListener(connection, "bidchaser.auction01");
-        startListenerNew(connection, "bidchaser.auction02");
     }
 
-    private static void startListener(Connection connection, String bindingKey){
-         System.out.println("Listening for messages");
-        
+    private static void startListener(Connection connection, String routingKey){
+
         try{
             Channel channel = connection.createChannel();
-            
-            channel.exchangeDeclare(EXCHANGE_NAME, "topic", true);
-            channel.queueDeclare(Q_NAME_D, false, true, false, null);
-            String queueName = channel.queueDeclare().getQueue();
-            System.out.println("Queue Name: " + queueName);
-            channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);
+                       
+            boolean isDurable = true;
+            boolean isExclusive = false;
+            boolean isAutoDelete = false;
+            channel.exchangeDeclare(DURABLE_EX, "topic", true);
+            //String queueName = channel.queueDeclare().getQueue();
+            channel.queueDeclare(Q_NAME_D, isDurable, isExclusive, isAutoDelete, null);
+            System.out.println("Queue Name: " + Q_NAME_D);
+            channel.queueBind(Q_NAME_D, DURABLE_EX, routingKey);
+            //System.out.println("QueingConsumerTest");
             consumer = new QueueingConsumer(channel);
-
-            channel.basicConsume(queueName, true, consumer);
-        } catch(IOException ex){
-            Logger.getLogger(RabbitMQReceiver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
-    private static void startListenerNew(Connection connection, String bindingKey){
-         System.out.println("Listening for messages");
-        
-        try{
-            Channel channel = connection.createChannel();
             
-            channel.exchangeDeclare(EXCHANGE_ND, "topic");
-            channel.queueDeclare(Q_NAME_ND, false, false, false, null);
-            String queueName = channel.queueDeclare().getQueue();
-            System.out.println("Queue Name: " + queueName);
-            channel.queueBind(queueName, EXCHANGE_ND, bindingKey);
-            consumer2 = new QueueingConsumer(channel);
-
-            channel.basicConsume(queueName, true, consumer2);
+            //System.out.println("BacicConsumeTest");
+           channel.basicConsume(Q_NAME_D, true, consumer);
         } catch(IOException ex){
             Logger.getLogger(RabbitMQReceiver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }       
     }
 
     public static String consumer(){
@@ -87,13 +67,19 @@ public class RabbitMQReceiver {
             System.out.println(" [x] Waiting for message.");
             boolean consuming = true;
             while(consuming){
+                System.out.println("4");
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+                System.out.println("5");
                 message = new String(delivery.getBody());
+                System.out.println("6");
                 String routingKey = delivery.getEnvelope().getRoutingKey();
 
                 System.out.println(" [x] Received -> '" + routingKey + "':'" + message + "'");
                 consuming = false;
             }
+            
+            
+            
         } catch(ShutdownSignalException | ConsumerCancelledException | InterruptedException ex){
             Logger.getLogger(RabbitMQReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,25 +87,25 @@ public class RabbitMQReceiver {
         return message;
     }
     
-    public static String consumerA(){
-        String message = "";
-        try{
-            System.out.println(" [x] Waiting for message.");
-            boolean consuming = true;
-            while(consuming){
-                QueueingConsumer.Delivery delivery = consumer2.nextDelivery();
-                message = new String(delivery.getBody());
-                String routingKey = delivery.getEnvelope().getRoutingKey();
-
-                System.out.println(" [x] Received -> '" + routingKey + "':'" + message + "'");
-                consuming = false;
-            }
-        } catch(ShutdownSignalException | ConsumerCancelledException | InterruptedException ex){
-            Logger.getLogger(RabbitMQReceiver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return message;
-    }
+//    public static String consumerA(){
+//        String message = "";
+//        try{
+//            System.out.println(" [x] Waiting for message.");
+//            boolean consuming = true;
+//            while(consuming){
+//                QueueingConsumer.Delivery delivery = consumer2.nextDelivery();
+//                message = new String(delivery.getBody());
+//                String routingKey = delivery.getEnvelope().getRoutingKey();
+//
+//                System.out.println(" [x] Received -> '" + routingKey + "':'" + message + "'");
+//                consuming = false;
+//            }
+//        } catch(ShutdownSignalException | ConsumerCancelledException | InterruptedException ex){
+//            Logger.getLogger(RabbitMQReceiver.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return message;
+//    }
 }
 
 

@@ -23,14 +23,14 @@ public class MongoDBInstance {
     private final String           MONGO_DATABASE            = "bidchaser";
     private final String           MONGO_MEMBERS_COLLECTION  = "Members";
     private final String           MONGO_PRODUCTS_COLLECTION = "Products";
-    private final String MONGO_BIDS_COLLECTION = "Bids";
+    private final String           MONGO_BIDS_COLLECTION = "Bids";
     private final String           MONGO_AUCTION_COLLECTION  = "Auctions";
 
-    protected MongoDBInstance() {
+    public MongoDBInstance() {
 
         // Exists only to defeat instantiation.
     }
-
+    
     /**
      *
      * @return     
@@ -88,8 +88,6 @@ public class MongoDBInstance {
         return db;
     }
     
-    
-
     /*
      *
      **************************************************
@@ -130,7 +128,7 @@ public class MongoDBInstance {
      * This method is used to get the mongodb members collection that is going to
      * be written to by the user.
      * 
-     * @return 
+     * @return      the members collection name
      */
     public MongoCollection<Document> getMongoMembersCollection() {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoMembersCollectionName());
@@ -154,7 +152,7 @@ public class MongoDBInstance {
      * This method is used to get the mongodb products collection that is going to
      * be written to by the user.
      *
-     * @return      mongo products collection
+     * @return      mongo products collection name
      */
     public MongoCollection<Document> getMongoProductsCollection() {
         MongoCollection<Document> collection = getMongoDatabase().getCollection(getMongoProductsCollectionName());

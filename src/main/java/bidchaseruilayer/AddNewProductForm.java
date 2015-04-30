@@ -55,6 +55,7 @@ public class AddNewProductForm extends JFrame
         addProductImageBtn = new javax.swing.JButton();
         productImageLbl = new javax.swing.JLabel();
         productStartDatePicker = new org.jdesktop.swingx.JXDatePicker();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +84,7 @@ public class AddNewProductForm extends JFrame
 
         jLabel5.setText("Start Time:");
 
-        productAddNewBtn.setText("Start Product");
+        productAddNewBtn.setText("Start Product Auction");
         productAddNewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productAddNewBtnActionPerformed(evt);
@@ -117,6 +118,13 @@ public class AddNewProductForm extends JFrame
         productImageLbl.setText("Product Image Goes Here!");
         productImageLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButton1.setText("Go Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout productsDetailsPanelLayout = new javax.swing.GroupLayout(productsDetailsPanel);
         productsDetailsPanel.setLayout(productsDetailsPanelLayout);
         productsDetailsPanelLayout.setHorizontalGroup(
@@ -126,13 +134,14 @@ public class AddNewProductForm extends JFrame
                 .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(productAddNewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                        .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel2)
-                            .addComponent(productTitlelbl))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(productTitlelbl)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(productTitleTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
@@ -154,9 +163,15 @@ public class AddNewProductForm extends JFrame
         productsDetailsPanelLayout.setVerticalGroup(
             productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(productsDetailsPanelLayout.createSequentialGroup()
+                        .addContainerGap(35, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18))
+                    .addGroup(productsDetailsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(productsDetailsPanelLayout.createSequentialGroup()
                         .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,6 +254,10 @@ public class AddNewProductForm extends JFrame
         validateProductDetials(productTitle, descriptionText, startPrice, startDate, startTime, endTime, productImage);
     }//GEN-LAST:event_productAddNewBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        openSelectActionForm();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void validateProductDetials(String productTitle, String descriptionText,
             String startPrice, Date startDate, String startTime, String endTime,
             Image productImage)
@@ -267,22 +286,17 @@ public class AddNewProductForm extends JFrame
                                     String reply;
                                     try
                                     {
-                                        reply = productHandler.addNewProduct(productTitle,
-                                                descriptionText, startPrice, startDate,
-                                                startTime, endTime);
+                                            reply = productHandler.addNewProduct(productTitle,
+                                                    descriptionText, startPrice, startDate,
+                                                    startTime, endTime);
+                                            JOptionPane.showMessageDialog(this, reply);
+                                            
+                                            AuctionScheduler auctionScheduler = new AuctionScheduler();
+
+                                            auctionScheduler.setupAuctionNonDurable(productTitle, descriptionText,
+                                                    startPrice, startDate, startTime, endTime);
                                         
-                                        
-                                        JOptionPane.showMessageDialog(this, reply);
-                                        
-                                        
-                                        
-                                        AuctionScheduler auctionScheduler = new AuctionScheduler();
-                                        auctionScheduler.setupAuction(productTitle, descriptionText,
-                                                startPrice, startDate, startTime, endTime);
                                         openSelectActionForm();
-                                        
-                                        
-                                        
                                     } catch (Exception ex)
                                     {
                                         Logger.getLogger(AddNewProductForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -413,10 +427,12 @@ public class AddNewProductForm extends JFrame
          */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
+            
             @Override
             public void run()
             {
                 new AddNewProductForm().setVisible(true);
+                
             }
         });
     }
@@ -425,6 +441,7 @@ public class AddNewProductForm extends JFrame
     private javax.swing.JButton addProductImageBtn;
     private javax.swing.JTextArea descriptionTA;
     private javax.swing.JList endTimeList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

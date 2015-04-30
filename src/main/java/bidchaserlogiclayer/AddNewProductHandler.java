@@ -31,83 +31,12 @@ public class AddNewProductHandler {
     }
 
     /**
-     * Finds the image of the new product and returns it as an Icon allowing it
-     * to be display on the calling UI display panel. The selected image is
-     * resized to fit the calling UI display panel.
-     * <p>
-     * In order to resize the image the height and width of the calling UI
-     * display panel needs to passed in as parameters.
-     * <p>
-     * @param height the height of the calling UI display panel.
-     * @param width  the width of the calling UI display panel.
-     * <p>
-     * @return the image as a resized Icon
-     * <p>
-     * @see ImageIcon 
-     * <a href = "http://docs.oracle.com/javase/7/docs/api/javax/swing/ImageIcon.html">ImageIcon</a>
-     */
-    public Icon selectProductImage(int height, int width) {
-
-        // size of the read buffer
-        JFileChooser jFile       = selectProductImage();
-        File         fileDetails = getSelectedFileDetails(jFile);
-
-        // ImageIcon to be returned
-        ImageIcon icon = writeProductImageIcon(fileDetails, height, width);
-
-        return icon;
-    }
-
-    /**
-     * Returns the filepath of the selected file as a String.
-     * <p>
-     * @return the filepath
-     */
-    public String getFilepath() {
-        return filepath;
-    }
-
-    /**
-     * Sets the filepath of the selected file.
-     * <p>
-     * @param filepath the filepath to set
-     */
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
-    }
-
-    /**
-     * Returns the filename of the selected file as a String. Returns filename
-     * using filepath e.g:
-     * <p>
-     * filepath = "C:\Documents\Images\SelectedImage.jpg"; filename =
-     * "SelectedImage.jpg";
-     * <p>
-     * @return the filename
-     * <p>
-     * @see File <a href = "http://docs.oracle.com/javase/7/docs/api/java/io/File.html">File</a>
-     */
-    public String getFilename() {
-        return filename;
-    }
-
-    /**
-     * Sets the filename of the selected image.
-     * <p>
-     * @param filename the filename to set
-     */
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    /**
      *checks the product title by performing two tests:
      * 
      * Check the length of the title:
      * 
      *<p>
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_PRODTITLE_LENGTH
+     *  cannot be -gt MAX_PRODTITLE_LENGTH
      * <p>
      * 
      * The first test checks the product titles length. If the test fails
@@ -129,16 +58,14 @@ public class AddNewProductHandler {
         } else if (checkStringForNonAlphaNumericCharacters(productTitle)) {
             retval = ValidationCodes.INVAL_TITLE_CHARS;
         }
-                 
-
         return retval;
     }
 
     /**
      *
      * This is the product description that is read in from the Text Area. The
-     * description cannot be empty (length() == 0) and the description can only
-     * contain a maximum of 140 characters (length() < 140).
+     * description can only
+     * contain a maximum of 140 characters.
      * 
      * <p>
      * @param descriptionText the product description text.
@@ -159,7 +86,7 @@ public class AddNewProductHandler {
      * checks the products start price by performing two tests
      * 
      * <p>
-     * (b.) cannot be -gt MAX_PRICE_LENGTH
+     * cannot be -gt MAX_PRICE_LENGTH
      * <p>
      * 
      * The first test checks the start price length which is limit to 5 i.e 99999.
@@ -200,9 +127,19 @@ public class AddNewProductHandler {
      * <p>
      * @return              the current value of the validation process
      * <p>
-     * @see SimpleDateFormat    
-     * <a href = "https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a>
+     * 
+     * 
+     * Title: Class SimpleDateFormat
+     * Author: Oracle
+     * Site Owner: Oracle.com
+     * Date: 2014
+     * Availability: https://www.youtube.com/watch?v=VA6XIk8Xyp4 
+     * (Accessed April 2015)
+     * 
+     * *************************************************
+     * 
      */
+     
     public int validateStartDate(Date startDate) {
         int retval = ValidationCodes.VALID_STARTDATE;
 
@@ -235,9 +172,8 @@ public class AddNewProductHandler {
      * The second test checks the length of start time string. If the test fails
      * at this stage the return value is set to INVAL_STTIME_TYPE (765193)
      * 
-     * <p>
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_PRICE_LENGTH
+     *<p> 
+     * cannot be -gt MAX_PRICE_LENGTH
      * <p>
      * 
      * 
@@ -260,7 +196,6 @@ public class AddNewProductHandler {
         return retval;
     }
                     
-
     /**
      *checks the products end time to be auctioned by performing two tests:
      * 
@@ -271,8 +206,7 @@ public class AddNewProductHandler {
      * at this stage the return value is set to INVAL_ENDTIME_TYPE (765221)
      * 
      * <p>
-     * (a.) cannot be -eq MIN_LENGTH
-     * (b.) cannot be -gt MAX_ETIME_LEN
+     * cannot be -gt MAX_ETIME_LEN
      * <p>
      * 
      * @param endTime       the end time to be validated
@@ -303,7 +237,7 @@ public class AddNewProductHandler {
     public int validateImage(Image productImage) {
         int retval = ValidationCodes.VALID_IMAGE;
 
-        // TOD0: create checksum value for image and compare with current checksum
+        
         return retval;
     }
 
@@ -312,7 +246,7 @@ public class AddNewProductHandler {
      * tests are passed
      * 
      * @param productTitle      the title of the product to be added
-     * @param desriptionText    the products description to be added
+     * @param descriptionText   the products description to be added
      * @param startPrice        the starting price of the product to be added
      * @param startDate         the starting date of the auction to be added 
      * @param startTime         the starting time of the product auction to be added
@@ -320,13 +254,28 @@ public class AddNewProductHandler {
      * @return                  the status of the products addition to the database
      * 
      * @throws Exception
+     * 
+     *  
+     * Registering the new member to Mongo Database. Only run after all validation
+     * has passed
+     * 
+     **************************************************
+     * Title: MongoDB: Insert a Document
+     * Author: MongoDB
+     * Site Owner: MongoDB
+     * Date: 
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/quick-tour/
+     * (Accessed March 2015)
+     * 
+     * *************************************************     
      */
-    public String addNewProduct(String productTitle, String desriptionText, String startPrice, Date startDate,
+     
+    public String addNewProduct(String productTitle, String descriptionText, String startPrice, Date startDate,
                                 String startTime, String endTime)
             throws Exception {
-        GridFSInputFile gridFSImage = covertProductImageToGridFSImage();
+        GridFSInputFile gridFSImage = convertProductImageToGridFSImage();
         Document        newProduct  = new Document("productTitle", productTitle).append("desriptionText",
-                                          desriptionText).append("startPrice", startPrice).append("startDate",
+                                          descriptionText).append("startPrice", startPrice).append("startDate",
                                               startDate).append("startTime", startTime).append("endTime",
                                                   endTime).append("productImage", gridFSImage);
 
@@ -336,65 +285,67 @@ public class AddNewProductHandler {
                + MongoDBInstance.getInstance().getMongoProductsCollectionName();
     }
     
-    /*
-    *Resizing the image using the Graphics 2D class
-    *
-    */
-    private static BufferedImage resizeImage(BufferedImage originalImage, int type, int height, int width) {
-        BufferedImage resizedImage = new BufferedImage(width, height, type);
-        Graphics2D    g            = resizedImage.createGraphics();
-
-        g.drawImage(originalImage, 0, 0, width, height, null);
-        g.dispose();
-
-        return resizedImage;
-    }
-
-    /*
-    * Load the image to a buffer of the file size
-    */
-    private static byte[] loadImage(String filePath) throws Exception {
-        File   file   = new File(filePath);
-        int    size   = (int) file.length();
-        byte[] buffer = new byte[size];
-
-        try (FileInputStream in = new FileInputStream(file)) {
-            in.read(buffer);
-            in.close();
-        }
-
-        return buffer;
-    }
-
-    /*
-     * This method is used to check if the string contains any non-valid
-     * characters. Non-valid character is any character that is not a letter.
+    /**
+     * Finds the image of the new product and returns it as an Icon allowing it
+     * to be display on the calling UI display panel. The selected image is
+     * resized to fit the calling UI display panel.
+     * <p>
+     * In order to resize the image the height and width of the calling UI
+     * display panel needs to passed in as parameters.
+     * <p>
+     * @param height the height of the calling UI display panel.
+     * @param width  the width of the calling UI display panel.
+     * <p>
+     * @return the image as a resized Icon
+     * <p>
+     * 
+     * 
      */
-    private static boolean checkStringForNonAlphaNumericCharacters(String testString) {
-        boolean isValid = true;
-        char    ch;
+    public Icon selectProductImage(int height, int width) {
+        
+        JFileChooser jFile       = new JFileChooser();
+        jFile .showOpenDialog(null);
+        File         fileDetails = getSelectedFileDetails(jFile);
 
-        for (int i = 0; i < testString.length(); i++) {
-            ch = testString.charAt(i);
+        // ImageIcon to be returned
+        ImageIcon icon = writeProductImageIcon(fileDetails, height, width);
 
-            if (!Character.isLetter(ch) &&!Character.isDigit(ch)) {
-                isValid = false;
-            }
-        }
-
-        return isValid;
-    }    // end method
-
+        return icon;
+    }
+    
     /*
+     *
+     * Get the files details of the image chosen by the user
+     */
+    private File getSelectedFileDetails(JFileChooser jFile) {
+        // get the details
+        File fileDetails = jFile.getSelectedFile();
+
+        //get the url of the image
+        setFilepath(fileDetails.getAbsolutePath());
+        //the name of the selected file
+        setFilename(fileDetails.getName());
+
+        return fileDetails;
+    }
+    
+    /*  
      * Convert the image to a BufferedImage, creates a buffer for image data 
      * to be stored, then writes the image to jpeg format and reads this image 
-     * data into a buffer to to written to the icon. 
-    
-     * @see https://www.youtube.com/watch?v=VA6XIk8Xyp4
+     * data into a buffer to to written to the icon.
+     **************************************************
+     * Title: Image Resizing & Compression In Java Part 2
+     * Author: Niraj J
+     * Site Owner: youtube.com
+     * Date: 
+     * Availibilty: https://www.youtube.com/watch?v=VA6XIk8Xyp4 
+     * (Accessed March 2015)
+     * 
+     * *************************************************     
      */
     private ImageIcon writeProductImageIcon(File fileDetails, int height, int width) throws HeadlessException {
         ImageIcon icon = null;
-
+        
         try {
             BufferedImage         thumbnail = getThumbnailImage(fileDetails, height, width);
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -418,61 +369,65 @@ public class AddNewProductHandler {
             JOptionPane.showMessageDialog(null, "Images only can be uploaded");
             ioe.printStackTrace(System.out);
         }
-
         return icon;
-    }
-
-    /*
-     * Reads the file details, get the image type and resize the image
-     */
+    }// end of refactored code
+    
     private BufferedImage getThumbnailImage(File fileDetails, int height, int width) throws IOException {
-
-        // get the and resize the selected file
+        // get the files details, type of image and resize the selected file
         BufferedImage bufferedImage = ImageIO.read(fileDetails);
         int           type          = bufferedImage.getType();
         BufferedImage thumbnail     = resizeImage(bufferedImage, type, height, width);
 
         return thumbnail;
-    }
-
-    /*
-     *
-     * Get the files details of the image chosen by the user
+    }//end of refactored code
+    
+    /*  
+     * Convert the image to a BufferedImage, creates a buffer for image data 
+     * to be stored, then writes the image to jpeg format and reads this image 
+     * data into a buffer to to written to the icon.
+     **************************************************
+     * Title: How to resize an image in Java ?
+     * Author: MKYong
+     * Site Owner: MKYong.com
+     * Date: 29/09/2009
+     * Availibilty: https://www.youtube.com/watch?v=VA6XIk8Xyp4 
+     * (Accessed March 2015)
+     * 
+     * *************************************************
+     * 
      */
-    private File getSelectedFileDetails(JFileChooser jFile) {
+    private static BufferedImage resizeImage(BufferedImage originalImage, int type, int height, int width) {
+        
+        BufferedImage resizedImage = new BufferedImage(width, height, type);
+        Graphics2D    g            = resizedImage.createGraphics();
 
-        // get the details
-        File fileDetails = jFile.getSelectedFile();
+        g.drawImage(originalImage, 0, 0, width, height, null);
+        g.dispose();
 
-        //get the url of the image+
-        setFilepath(fileDetails.getAbsolutePath());
-        //the name of the selected file
-        setFilename(fileDetails.getName());
-
-        return fileDetails;
-    }
-
-    /*
+        return resizedImage;
+    }// end of refactored code
+    
+    /*  
+     * Convert the image to a GridFS image.
+     * 
+     *Instead of storing a file in a single document, GridFS divides a file 
+     *into parts, or chunks, and stores each of those chunks as a separate 
+     *document. By default GridFS limits chunk size to 256k. GridFS uses 
+     *two collections to store files. One collection stores the file chunks, 
+     *and the other stores file metadata.
      *
+     **************************************************
+     * Title: Java MongoDB : Save image example
+     * Author: MKYong
+     * Site Owner: MKYong.com
+     * Date: 11/05/2011
+     * Availibilty: http://www.mkyong.com/mongodb/java-mongodb-save-image-example/ 
+     * (Accessed March 2015)
+     * 
+     * *************************************************
      */
-    private JFileChooser selectProductImage() throws HeadlessException {
-
-        // select the image file using JFileChooser
-        JFileChooser jFile = new JFileChooser();
-
-        jFile.showOpenDialog(null);
-
-        return jFile;
-    }
-
-    /*
-     *
-     * @return
-     * @throws Exception
-     */
-    private GridFSInputFile covertProductImageToGridFSImage() throws Exception {
-
-        // convert image to girdfs
+    private GridFSInputFile convertProductImageToGridFSImage() throws Exception {
+        // local variable for storing the filepath
         byte[] imageBytes = loadImage(getFilepath());
 
         // Create GridFS object
@@ -484,10 +439,97 @@ public class AddNewProductHandler {
         gridFSImage.setFilename(getFilename());
 
         return gridFSImage;
+    } //end of refactored code
+    
+    /*  
+     * Loading the image for saving to MongoDB
+     *
+     **************************************************
+     * Title: Image Resizing & Compression In Java Part 2
+     * Author: Niraj J
+     * Site Owner: youtube.com
+     * Date: 
+     * Availibilty: https://www.youtube.com/watch?v=VA6XIk8Xyp4 
+     * (Accessed April 2015)
+     * 
+     * *************************************************
+     * 
+     */
+    private static byte[] loadImage(String filePath) throws Exception {
+        File   file   = new File(filePath);
+        int    size   = (int) file.length();
+        byte[] buffer = new byte[size];
+
+        try (FileInputStream in = new FileInputStream(file)) {
+            in.read(buffer);
+            in.close();
+        }
+        return buffer;
+    }// end of refactored code
+    
+    /**
+     * Returns the filepath of the selected file as a String.
+     * <p>
+     * @return the filepath
+     */
+    public String getFilepath() {
+        return filepath;
+    }
+
+    /**
+     * Sets the filepath of the selected file.
+     * <p>
+     * @param filepath the filepath to set
+     */
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
+
+    /**
+     * Returns the filename of the selected file as a String. Returns filename
+     * using filepath e.g:
+     * <p>
+     * filepath = "C:\Documents\Images\SelectedImage.jpg"; filename =
+     * "SelectedImage.jpg";
+     * <p>
+     * @return the filename
+     * <p>
+     * 
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * Sets the filename of the selected image.
+     * <p>
+     * @param filename the filename to set
+     */
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     /*
-     *checks for non numeric characters. 
+     * This method is used to check if the string contains any non-valid
+     * characters. Non-valid character is any character that is not a letter.
+     */
+    private static boolean checkStringForNonAlphaNumericCharacters(String testString) {
+        boolean isValid = true;
+        char    ch;
+
+        for (int i = 0; i < testString.length(); i++) {
+            ch = testString.charAt(i);
+
+            if (!Character.isLetter(ch) &&!Character.isDigit(ch)) {
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }// end method
+
+    /*
+     * Checks for non numeric characters. 
      *
      */
     private boolean checkStringForNonNumericCharacters(String testString) {

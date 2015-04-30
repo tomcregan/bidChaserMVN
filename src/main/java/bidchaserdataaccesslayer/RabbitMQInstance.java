@@ -2,7 +2,7 @@ package bidchaserdataaccesslayer;
 
 import com.rabbitmq.client.*;
 import java.io.*;
-import java.util.logging.*;
+
 
 /**
  *
@@ -41,12 +41,21 @@ public class RabbitMQInstance
     }
     
     /**
-     * Create an instance of the Rabbit Client ConnectionFactory
+     * Creates an instance of the Rabbit Client ConnectionFactory
      * for TCP connection to the broker
      * 
+     *
+     **************************************************
+     * Title: Interface Connection
+     * Author: RabbitMQ
+     * Site Owner: RabbitMQ.com
+     * Date 2015
+     * Availibilty: http://www.rabbitmq.com/javadoc/com/rabbitmq/client/Connection.html 
+     * (Accessed March 2015)
      * @return 
      */
     public Connection getConnection(){
+        //initialise the connection
         Connection conn = null;
         try{
             ConnectionFactory factory = new ConnectionFactory();
@@ -55,6 +64,7 @@ public class RabbitMQInstance
             factory.setVirtualHost(VHOST);
             factory.setHost(HOST);
             factory.setPort(PORT);
+            //open the channel
             conn = factory.newConnection();
 
         } catch(IOException ex){
@@ -63,7 +73,7 @@ public class RabbitMQInstance
         return conn;
     }
         
-}
+}//end of refactored code
 
 
 //~ Formatted by Jindent --- http://www.jindent.com

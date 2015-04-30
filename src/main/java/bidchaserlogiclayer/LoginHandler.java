@@ -1,13 +1,8 @@
 package bidchaserlogiclayer;
 
-//~--- non-JDK imports --------------------------------------------------------
-
 import bidchaserdataaccesslayer.MongoDBInstance;
-
 import com.mongodb.client.*;
-
 import org.bson.*;
-
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
@@ -40,32 +35,18 @@ public class LoginHandler {
     }
 
     /**
-     * This method creates a FindIterable object and using the Bson filter, to
-     * find the document that is equal to the current username. If the username
-     * document already exists the the username is taken the current user will
-     * have to select a new name.
-     * <p>
-     * @param uname the user name of the current user.
-     * <p>
-     * @return true if the user name already exists or else false.
-     *
-     * Find the First Document in a Collection
-     *  call the first() method on the result of the find() of method
-     *
-     *
-     *   To get the first document in the collection, call the first
-     *   () method on the find() operation. collection.find().first()
-     *   returns the first document or null rather than a cursor. This is
-     *   useful for queries that should only match a single document,
-     *   or if you are interested in the first document only.
-     *
+     * Finds the first document in a collection based on the collection.find().first()
+     * method
+     * 
+     * This returns the first document or else null if no documents in the collection
+     * exist matching the username and password entries. 
+     * 
      **************************************************
-     * Title: Connection Settings - Get A Single Document with a Query Filter
+     * Title: Connection Settings - Find the First Document in a Collection
      * Author: mongoDB
      * Site Owner: MongoDB.org
      * Date 2015
-     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver
-                   /reference/connecting/connection-settings/ 
+     * Availibilty: http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/quick-tour/ 
      * (Accessed March 2015)
      *
      **************************************************
@@ -82,7 +63,7 @@ public class LoginHandler {
 
         return isMember;
     }
-}
+}//end of rafactored code
 
 
 //~ Formatted by Jindent --- http://www.jindent.com
