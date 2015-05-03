@@ -287,7 +287,7 @@ public class AddNewProductHandler {
     
     /**
      * Finds the image of the new product and returns it as an Icon allowing it
-     * to be display on the calling UI display panel. The selected image is
+     * to be displayed on the calling UI display panel. The selected image is
      * resized to fit the calling UI display panel.
      * <p>
      * In order to resize the image the height and width of the calling UI
@@ -306,7 +306,6 @@ public class AddNewProductHandler {
         JFileChooser jFile       = new JFileChooser();
         jFile .showOpenDialog(null);
         File         fileDetails = getSelectedFileDetails(jFile);
-
         // ImageIcon to be returned
         ImageIcon icon = writeProductImageIcon(fileDetails, height, width);
 
@@ -320,8 +319,7 @@ public class AddNewProductHandler {
     private File getSelectedFileDetails(JFileChooser jFile) {
         // get the details
         File fileDetails = jFile.getSelectedFile();
-
-        //get the url of the image
+       //get the url of the image
         setFilepath(fileDetails.getAbsolutePath());
         //the name of the selected file
         setFilename(fileDetails.getName());
@@ -466,6 +464,7 @@ public class AddNewProductHandler {
         }
         return buffer;
     }// end of refactored code
+    
     
     /**
      * Returns the filepath of the selected file as a String.

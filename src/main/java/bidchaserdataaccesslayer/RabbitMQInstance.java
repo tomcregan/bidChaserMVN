@@ -4,10 +4,17 @@ import com.rabbitmq.client.*;
 import java.io.*;
 
 
-/**
- *
- * @author tommy
+/*
+ **************************************************
+ * Title: Java - How to use Singleton Class?
+ * Author: Tutorials Point: SimplyEasyLearning
+ * Site Owner: tutorialspoint.com
+ * Date 2015
+ * Availibilty: http://www.tutorialspoint.com/java/java_using_singleton.htm 
+ * (Accessed March 2015)
  * 
+ * *************************************************
+ * @author tommy
  */
 public class RabbitMQInstance
 {

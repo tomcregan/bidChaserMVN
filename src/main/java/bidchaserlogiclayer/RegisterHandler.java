@@ -16,8 +16,6 @@ public class RegisterHandler {
      * Checks the first name of the new user by performing two different tests:
      * <p>
      * Check the length of the string:
-     *
- 
      * cannot be -gt MAX_FIRSTNAME_LENGTH
      * <p>
      * MIN_LENGTH (0) and MAX_FIRSTNAME_LENGTH (20) are defined as private class
@@ -44,7 +42,6 @@ public class RegisterHandler {
                     retval = ValidationCodes.INVAL_FNAME_CHARS;
                 }
             }
-
         return retval;
     }
 

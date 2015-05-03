@@ -28,7 +28,6 @@ public class SelectActionForm extends javax.swing.JFrame
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         selectNewProductBtn = new javax.swing.JButton();
-        selectDisplayAuctionsBtn = new javax.swing.JButton();
         selectNewProductBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,13 +40,6 @@ public class SelectActionForm extends javax.swing.JFrame
         selectNewProductBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectNewProductBtnActionPerformed(evt);
-            }
-        });
-
-        selectDisplayAuctionsBtn.setText("Display Auctions");
-        selectDisplayAuctionsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectDisplayAuctionsBtnActionPerformed(evt);
             }
         });
 
@@ -64,9 +56,7 @@ public class SelectActionForm extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectDisplayAuctionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectNewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(selectNewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -76,17 +66,15 @@ public class SelectActionForm extends javax.swing.JFrame
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(selectNewProductBtn)
-                .addGap(31, 31, 31)
-                .addComponent(selectDisplayAuctionsBtn)
-                .addGap(29, 29, 29))
+                .addGap(26, 26, 26))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
                     .addComponent(selectNewProductBtn1)
-                    .addContainerGap(137, Short.MAX_VALUE)))
+                    .addContainerGap(101, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -103,7 +91,7 @@ public class SelectActionForm extends javax.swing.JFrame
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,13 +114,8 @@ public class SelectActionForm extends javax.swing.JFrame
 
     private void selectNewProductBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_selectNewProductBtnActionPerformed
     {//GEN-HEADEREND:event_selectNewProductBtnActionPerformed
-        openAddNewProduct();
-    }//GEN-LAST:event_selectNewProductBtnActionPerformed
-
-    private void selectDisplayAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_selectDisplayAuctionsBtnActionPerformed
-    {//GEN-HEADEREND:event_selectDisplayAuctionsBtnActionPerformed
         openDisplayAuctions();
-    }//GEN-LAST:event_selectDisplayAuctionsBtnActionPerformed
+    }//GEN-LAST:event_selectNewProductBtnActionPerformed
 
     private void selectNewProductBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectNewProductBtn1ActionPerformed
         openAddNewProduct();
@@ -186,7 +169,6 @@ public class SelectActionForm extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton selectDisplayAuctionsBtn;
     private javax.swing.JButton selectNewProductBtn;
     private javax.swing.JButton selectNewProductBtn1;
     // End of variables declaration//GEN-END:variables

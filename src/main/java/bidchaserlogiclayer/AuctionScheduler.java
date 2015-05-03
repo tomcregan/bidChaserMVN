@@ -1,11 +1,10 @@
 package bidchaserlogiclayer;
 
-import java.io.IOException;
+import com.rabbitmq.client.*;
+import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bson.Document;
-
+import java.util.logging.*;
+import org.bson.*;
 
 /**
  *
@@ -13,76 +12,59 @@ import org.bson.Document;
  */
 public class AuctionScheduler
 {
+
     public AuctionScheduler()
     {
     }
-    
-    public void setupAuctionDurable(String productTitle, String descriptionText, String startPrice, Date startDate,
-            String startTime, String endTime)
-    {        
-        testRabbitMQDurable(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
-        
-    }
 
-    public void setupAuctionNonDurable(String productTitle, String descriptionText, String startPrice, Date startDate,
-            String startTime, String endTime)
-    {        
-        testRabbitMQNonDurable(productTitle, descriptionText, startPrice, startDate, startTime, endTime);
-        //auctionControl(startTime, endTime);
-    }
-    
-    
-    private void testRabbitMQDurable(String productTitle, String descriptionText, String startPrice, Date startDate,
+    public void setupDurableAuction(String productTitle, String descriptionText, String startPrice, Date startDate,
             String startTime, String endTime)
     {
         Document message = new Document("productTitle", productTitle).append("descriptionText",
-                                          descriptionText).append("startPrice", startPrice).append("startDate",
-                                              startDate).append("startTime", startTime).append("endTime",
-                                                  endTime);
-        try {
-            try {
-                RabbitMQReceiver.receive();
-                System.out.println("1");
-            } catch (InterruptedException ex) {
+                descriptionText).append("startPrice", startPrice).append("startDate",
+                        startDate).append("startTime", startTime).append("endTime",
+                        endTime);
+        try
+        {
+            try
+            {
+                Connection conn = RabbitMQReceiver.receive();
+                RabbitMQReceiver.startDurableListener(conn, "bidchaser_durable");
+            } catch (InterruptedException ex)
+            {
                 Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("2");
-            RabbitMQSender.send(message);
-            
-        } catch (IOException ex) {
+            RabbitMQSender.sendDurable(message, "bidchaser_durable");
+        } catch (IOException ex)
+        {
             Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("3");
-        System.out.println(RabbitMQReceiver.consumer());
+        //System.out.println(RabbitMQReceiver.consumer());
     }
-    
-    private void testRabbitMQNonDurable(String productTitle, String descriptionText, String startPrice, Date startDate,
-            String startTime, String endTime)
+
+    public void setupNonDurableAuction(String productTitle, String descriptionText, String string, Date now, String startTime, String endTime)
     {
         Document message = new Document("productTitle", productTitle).append("descriptionText",
-                                          descriptionText).append("startPrice", startPrice).append("startDate",
-                                              startDate).append("startTime", startTime).append("endTime",                                               endTime);
-        try {
-            try {
-                RabbitMQReceiver.receive();
-            } catch (InterruptedException ex) {
+                descriptionText).append("startPrice", string).append("startDate",
+                        now).append("startTime", startTime).append("endTime",
+                        endTime);
+        try
+        {
+            try
+            {
+                Connection conn = RabbitMQReceiver.receive();
+                RabbitMQReceiver.startDurableListener(conn, "bidchaser_nonDurable");
+            } catch (InterruptedException ex)
+            {
                 Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RabbitMQSender.send(message);
-            
-        } catch (IOException ex) {
+            RabbitMQSender.sendNonDurable(message, "bidchaser.nonDurable");
+        } catch (IOException ex)
+        {
             Logger.getLogger(AuctionScheduler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        System.out.println(RabbitMQReceiver.consumer());
+        //System.out.println(RabbitMQReceiver.consumer());
     }
-
-
-//    private void auctionControl(String startTime, String endTime)
-//    {
-//        AuctionTimer auctionTimer = new AuctionTimer();
-//        auctionTimer.startTimer(startTime, endTime);
-//    }
 }
 
 

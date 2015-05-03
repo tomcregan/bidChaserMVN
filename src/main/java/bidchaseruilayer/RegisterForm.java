@@ -60,7 +60,7 @@ public class RegisterForm extends javax.swing.JFrame
 
         regDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter Registration Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 11))); // NOI18N
 
-        regEmailTxt.setText("tom.tom@gmail.com");
+        regEmailTxt.setText("tommycregan@live.com");
 
         regLastnameTxt.setText("tomtom");
 
@@ -74,7 +74,7 @@ public class RegisterForm extends javax.swing.JFrame
 
         jLabel6.setText("Enter Phone Number:");
 
-        regPhoneNumTxt.setText("0870000001");
+        regPhoneNumTxt.setText("0868946164");
 
         jLabel1.setText("Enter Firstname:");
 
@@ -82,7 +82,7 @@ public class RegisterForm extends javax.swing.JFrame
 
         regFirstnameTxt.setText("tomtom");
 
-        regDOBTxt.setText("10/06/1982");
+        regDOBTxt.setText("12/05/1981");
         regDOBTxt.setToolTipText("Date must in the format of: dd/mm/yyyy");
 
         jLabel3.setText("Enter Username:");
@@ -247,8 +247,12 @@ public class RegisterForm extends javax.swing.JFrame
         String dob = regDOBTxt.getText();
         String pnum = regPhoneNumTxt.getText();
         String email = regEmailTxt.getText();
-       
-           
+        validateUserDetails(fname, lname, uname, pword, dob, pnum, email);
+    }//GEN-LAST:event_regRegBtnActionPerformed
+        
+    private void validateUserDetails(String fname, String lname, String uname,
+            String pword, String dob, String pnum, String email)
+    {
         int fnameRetval = regHandler.validateFirstname(fname);
         if (fnameRetval == ValidationCodes.VALID_FIRSTNAME)
         {
@@ -392,8 +396,7 @@ public class RegisterForm extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(null, "firstname fail");
             }
         }
-    }//GEN-LAST:event_regRegBtnActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

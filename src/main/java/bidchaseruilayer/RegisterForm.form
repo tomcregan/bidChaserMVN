@@ -163,7 +163,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="regEmailTxt">
               <Properties>
-                <Property name="text" type="java.lang.String" value="tom.tom@gmail.com"/>
+                <Property name="text" type="java.lang.String" value="tommycregan@live.com"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="regLastnameTxt">
@@ -198,7 +198,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="regPhoneNumTxt">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0870000001"/>
+                <Property name="text" type="java.lang.String" value="0868946164"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -218,7 +218,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="regDOBTxt">
               <Properties>
-                <Property name="text" type="java.lang.String" value="10/06/1982"/>
+                <Property name="text" type="java.lang.String" value="12/05/1981"/>
                 <Property name="toolTipText" type="java.lang.String" value="Date must in the format of: dd/mm/yyyy"/>
               </Properties>
             </Component>

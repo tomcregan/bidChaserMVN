@@ -1,90 +1,110 @@
 package bidchaserlogiclayer;
 
 
-
-import bidchaserdataaccesslayer.RabbitMQInstance;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.MessageProperties;
-import org.bson.Document;
+import bidchaserdataaccesslayer.*;
+import com.rabbitmq.client.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
+import org.bson.*;
 
 /**
  *
  * @author tommy
  */
-public class RabbitMQSender {
+public class RabbitMQSender
+{
 
     /**
      *
      * @param product
      */
-    private static final String DURABLE_EX = "topic_durable";
+    private static final String EXCHANGE_DUR = "topic_bids_dur";
     
+    private static final String EXCHANGE_NON_DUR = "topic_Non_Dur";
     
-    
-    private static final String EXCHANGE_ND = "topic_bidND";
-    private final static String Q_NAME_D = "bid_durable_q";
-    private final static int LOOP_COUNT = 20;
-    //private final static String Q_NAME_ND = "bid_non_durable";
-    //private final static String Q_NAME_D_BASICACK = "bid_basic_ack";
-    
+    private static final int LOOP_COUNT = 10000;
 
     /**
      *
-     * @param doc
-     *
+     * @param doc        <p>
+     * @param routingKey <p>
      * @throws IOException
      */
-    public static void send(Document doc) throws IOException {
+    public static void sendDurable(Document doc, String routingKey) throws IOException
+    {
         Connection connection = RabbitMQInstance.getInstance().getConnection();
-
-        durablePublish(connection, "bidchaser.auction01", doc);
-        //nonDurablePublish(connection, "bidchaser.auction02", doc);
-    }
-
-    private static void durablePublish(Connection connection, String routingKey, Document doc) {
-        try {
-            Channel channel = connection.createChannel();
-            channel.exchangeDeclare(EXCHANGE_ND, "topic", true);
-            
-            for (int i = 1; i <= LOOP_COUNT; i++) {
-                try {
-                    channel.basicPublish(EXCHANGE_ND, routingKey, MessageProperties.
-                    PERSISTENT_TEXT_PLAIN, doc.toString().getBytes());
-                } catch (IOException ex) {
-                    Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                System.out.println(" [*] Sent -> '" + routingKey + "':'" + doc.toString() + "'");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        publisherDurable(connection, routingKey, doc);
     }
     
-//    private static void nonDurablePublish(Connection connection, String routingKey, Document doc) {
-//        try {
-//            Channel channel = connection.createChannel();
-//            channel.exchangeDeclare(EXCHANGE_ND, "topic");
-//           
-//            for (int i = 1; i <= LOOP_COUNT; i++) {
-//                try {
-//                    channel.basicPublish(EXCHANGE_ND, routingKey, null, doc.toString().getBytes());
-//                } catch (IOException ex) {
-//                    Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//
-//                System.out.println(" [*] Sent -> '" + routingKey + "':'" + doc.toString() + "'");
-//            }
-//        } catch (IOException ex) {
-//            Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-       
+/*
+ **************************************************
+ * Title: Publishing Messages
+ * Author: RabbitMQ
+ * Site Owner: RabbitMQ.com
+ * Date 2015
+ * Availibilty: https://www.rabbitmq.com/api-guide.html
+ *
+ * (Accessed April 2015)
+ * 
+ * *************************************************
+ */
+    private static void publisherDurable(Connection connection, String routingKey, Document doc)
+    {
+       try
+        {
+            System.out.println("1");
+            Channel channel = connection.createChannel();
+            System.out.println("2");
+            channel.exchangeDeclare(EXCHANGE_DUR, "topic", true);
+            System.out.println("3");
+            for (int i = 0; i < LOOP_COUNT; i++)
+            {
+                try
+                {
+                    System.out.println("4");
+                    channel.basicPublish(EXCHANGE_DUR, routingKey, 
+                            MessageProperties.PERSISTENT_TEXT_PLAIN, doc.toString().getBytes());
+                    System.out.println(" [" + i + "] Sent -> '" + routingKey + "':'" + doc.toString() + "'");
+                } catch (IOException ex)
+                {
+                    Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//end of refactored code
+    
+    public static void sendNonDurable(Document doc, String routingKey) throws IOException
+    {
+        Connection connection = RabbitMQInstance.getInstance().getConnection();
+        publisherNonDurable(connection, routingKey, doc);
+    }
+    
+    private static void publisherNonDurable(Connection connection, String routingKey, Document doc)
+    {
+        try
+        {
+            Channel channel = connection.createChannel();
+            channel.exchangeDeclare(EXCHANGE_NON_DUR, "topic");
+            for (int i = 0; i < LOOP_COUNT; i++)
+            {
+                try
+                {
+                    channel.basicPublish(EXCHANGE_NON_DUR, routingKey, null, doc.toString().getBytes());
+                    System.out.println(" [" + i + "] Sent -> '" + routingKey + "':'" + doc.toString() + "'");
+                } catch (IOException ex)
+                {
+                    Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (IOException ex)
+        {
+            Logger.getLogger(RabbitMQSender.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//end of refactored code
 }
 
-
 //~ Formatted by Jindent --- http://www.jindent.com
+

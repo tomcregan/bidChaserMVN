@@ -40,6 +40,8 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         displayAllList = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         displayMemList = new javax.swing.JList();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +74,15 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         });
         jScrollPane2.setViewportView(displayMemList);
 
+        jButton1.setText("Go Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Go Back");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,9 +94,15 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(allAuctionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(memberAuctionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 596, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(memberAuctionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(allAuctionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 525, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -97,11 +114,15 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(allAuctionsBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(allAuctionsBtn)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(memberAuctionsBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(memberAuctionsBtn)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -113,6 +134,8 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         
     }//GEN-LAST:event_memberAuctionsBtnActionPerformed
 
+    
+    
     private void allAuctionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allAuctionsBtnActionPerformed
 
         List<Document> currentsProducts = displayHandler.findAllProducts();
@@ -122,12 +145,15 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
         for (int i = 0; i < currentsProducts.size(); i++)
         {
             System.out.println("allAuctionsBtnActionPerformed()" + currentsProducts.get(i).toJson());
-            //TODO: only display current auctions
             model.add(i, currentsProducts.get(i).toJson());
             displayAllList.setModel(model);
             displayAllList.setSelectedIndex(i);
         }
     }//GEN-LAST:event_allAuctionsBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        openSelectActionForm();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +211,8 @@ public class DisplayAuctionsForm extends javax.swing.JFrame
     private javax.swing.JButton allAuctionsBtn;
     private javax.swing.JList displayAllList;
     private javax.swing.JList displayMemList;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton memberAuctionsBtn;

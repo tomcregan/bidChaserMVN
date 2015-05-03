@@ -15,7 +15,6 @@ public class AddNewProductForm extends JFrame
 
     private final AddNewProductHandler productHandler;
 
-
     /**
      * Creates new form AddNewProductForm
      */
@@ -55,6 +54,9 @@ public class AddNewProductForm extends JFrame
         addProductImageBtn = new javax.swing.JButton();
         productImageLbl = new javax.swing.JLabel();
         productStartDatePicker = new org.jdesktop.swingx.JXDatePicker();
+        jPanel1 = new javax.swing.JPanel();
+        nondurrable = new javax.swing.JButton();
+        durrable = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,7 +86,7 @@ public class AddNewProductForm extends JFrame
 
         jLabel5.setText("Start Time:");
 
-        productAddNewBtn.setText("Start Product Auction");
+        productAddNewBtn.setText("Start Product");
         productAddNewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productAddNewBtnActionPerformed(evt);
@@ -118,13 +120,6 @@ public class AddNewProductForm extends JFrame
         productImageLbl.setText("Product Image Goes Here!");
         productImageLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Go Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout productsDetailsPanelLayout = new javax.swing.GroupLayout(productsDetailsPanel);
         productsDetailsPanel.setLayout(productsDetailsPanelLayout);
         productsDetailsPanelLayout.setHorizontalGroup(
@@ -132,16 +127,17 @@ public class AddNewProductForm extends JFrame
             .addGroup(productsDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(productAddNewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                        .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(102, 102, 102)
+                        .addComponent(productAddNewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(productsDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(productTitlelbl)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(productTitlelbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(productTitleTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
@@ -163,15 +159,9 @@ public class AddNewProductForm extends JFrame
         productsDetailsPanelLayout.setVerticalGroup(
             productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                        .addContainerGap(35, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18))
-                    .addGroup(productsDetailsPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(productsDetailsPanelLayout.createSequentialGroup()
                         .addGroup(productsDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,15 +211,71 @@ public class AddNewProductForm extends JFrame
                 .addContainerGap())
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Rabbit MQ Test System"));
+
+        nondurrable.setText("Run Non-durrable Queue");
+        nondurrable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nondurrableActionPerformed(evt);
+            }
+        });
+
+        durrable.setText("Run Durrable Queue");
+        durrable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durrableActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Go Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(durrable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                    .addComponent(nondurrable, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(durrable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nondurrable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(newProductPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(newProductPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(newProductPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -253,6 +299,24 @@ public class AddNewProductForm extends JFrame
         Image productImage = ((ImageIcon) productIcon).getImage();
         validateProductDetials(productTitle, descriptionText, startPrice, startDate, startTime, endTime, productImage);
     }//GEN-LAST:event_productAddNewBtnActionPerformed
+
+    private void durrableActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_durrableActionPerformed
+    {//GEN-HEADEREND:event_durrableActionPerformed
+        Calendar rightNow = Calendar.getInstance();
+        Date now = rightNow.getTime();
+        AuctionScheduler auctionScheduler = new AuctionScheduler();
+        auctionScheduler.setupDurableAuction("productTitle", "descriptionText",
+                "1000", now, "00:00", "00:10");
+    }//GEN-LAST:event_durrableActionPerformed
+
+    private void nondurrableActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_nondurrableActionPerformed
+    {//GEN-HEADEREND:event_nondurrableActionPerformed
+        Calendar rightNow = Calendar.getInstance();
+        Date now = rightNow.getTime();
+        AuctionScheduler auctionScheduler = new AuctionScheduler();
+        auctionScheduler.setupNonDurableAuction("productTitle", "descriptionText",
+                "1000", now, "00:00", "00:10");
+    }//GEN-LAST:event_nondurrableActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         openSelectActionForm();
@@ -283,19 +347,12 @@ public class AddNewProductForm extends JFrame
                                 int imageRetval = productHandler.validateImage(productImage);
                                 if (imageRetval == ValidationCodes.VALID_IMAGE)
                                 {
-                                    String reply;
                                     try
                                     {
-                                            reply = productHandler.addNewProduct(productTitle,
-                                                    descriptionText, startPrice, startDate,
-                                                    startTime, endTime);
-                                            JOptionPane.showMessageDialog(this, reply);
-                                            
-                                            AuctionScheduler auctionScheduler = new AuctionScheduler();
-
-                                            auctionScheduler.setupAuctionNonDurable(productTitle, descriptionText,
-                                                    startPrice, startDate, startTime, endTime);
-                                        
+                                        String reply = productHandler.addNewProduct(productTitle,
+                                                descriptionText, startPrice, startDate,
+                                                startTime, endTime);
+                                        JOptionPane.showMessageDialog(this, reply);
                                         openSelectActionForm();
                                     } catch (Exception ex)
                                     {
@@ -306,13 +363,16 @@ public class AddNewProductForm extends JFrame
                                     if (imageRetval == ValidationCodes.INVAL_IMAGE_TYPE)
                                     {
                                         JOptionPane.showMessageDialog(null, "illegal image type!!!");
+                                    } else
+                                    {
+                                        JOptionPane.showMessageDialog(null, "unknown error reading image!!!");
                                     }
                                 }
                             } else
                             {
                                 if (endTimeRetval == ValidationCodes.INVAL_ETIME_LEN)
                                 {
-                                    JOptionPane.showMessageDialog(null, " endTime cannot be empty!!!");
+                                    JOptionPane.showMessageDialog(null, "cannot be empty!!!");
                                 } else if (endTimeRetval == ValidationCodes.INVAL_ETIME_TYPE)
                                 {
                                     JOptionPane.showMessageDialog(null, "illegal time format!!!");
@@ -322,31 +382,31 @@ public class AddNewProductForm extends JFrame
                         {
                             if (startTimeRetval == ValidationCodes.INVAL_STTIME_LEN)
                             {
-                                JOptionPane.showMessageDialog(null, "start time length invalid");
+                                JOptionPane.showMessageDialog(null, "cannot be empty!!!");
                             } else if (startTimeRetval == ValidationCodes.INVAL_STTIME_TYPE)
                             {
-                                JOptionPane.showMessageDialog(null, "illegal start time format!!!");
+                                JOptionPane.showMessageDialog(null, "illegal time format!!!");
                             }
                         }
                     } else
                     {
                         if (startDateRetval == ValidationCodes.INVAL_STDATE_LEN)
                         {
-                            JOptionPane.showMessageDialog(null, "start date length is invalid");
+                            JOptionPane.showMessageDialog(null, "cannot be empty!!!");
                         } else if (startDateRetval == ValidationCodes.INVAL_STDATE_TIME)
                         {
-                            JOptionPane.showMessageDialog(null, "illegal start date format!!!");
+                            JOptionPane.showMessageDialog(null, "illegal date format!!!");
                         }
                     }
                 } else
                 {
                     if (priceRetval == ValidationCodes.INVAL_PRICE_LEN)
                     {
-                        JOptionPane.showMessageDialog(null, " start price cannot be empty or longer than "
+                        JOptionPane.showMessageDialog(null, "cannot be empty or longer than "
                                 + ValidationCodes.MAX_PRICE_LEN + " characters!!!");
                     } else if (priceRetval == ValidationCodes.INVAL_PRICE_CHARS)
                     {
-                        JOptionPane.showMessageDialog(null, " start price cannot contain illegal characters (Non Numeric))!!!");
+                        JOptionPane.showMessageDialog(null, "cannot contain illegal characters (Non Numeric))!!!");
                     }
                 }
             } else
@@ -364,12 +424,12 @@ public class AddNewProductForm extends JFrame
             if (titleRetval == ValidationCodes.INVAL_TITLE_LEN)
             {
                 JOptionPane.showMessageDialog(this,
-                "Product Title Error: cannot be empty or longer than" + ValidationCodes.MAX_PROC_TITLE + " characters!!!",
-                "Product Title Error",
-                JOptionPane.ERROR_MESSAGE);
+                        "Product Title Error: cannot be empty or longer than 20 characters!!!",
+                        "Product Title Error",
+                        JOptionPane.ERROR_MESSAGE);
             } else if (titleRetval == ValidationCodes.INVAL_TITLE_CHARS)
             {
-                JOptionPane.showMessageDialog(null, "Title cannot contain illegal characters (Non Alpha-Numeric))!!!");
+                JOptionPane.showMessageDialog(null, "cannot contain illegal characters (Non Alpha-Numeric))!!!");
             }
         }
     }
@@ -381,6 +441,7 @@ public class AddNewProductForm extends JFrame
         this.setVisible(false);
         actionForm.setVisible(true);
     }
+    
 
     /**
      * @param args the command line arguments
@@ -427,12 +488,10 @@ public class AddNewProductForm extends JFrame
          */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
-            
             @Override
             public void run()
             {
                 new AddNewProductForm().setVisible(true);
-                
             }
         });
     }
@@ -440,6 +499,7 @@ public class AddNewProductForm extends JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProductImageBtn;
     private javax.swing.JTextArea descriptionTA;
+    private javax.swing.JButton durrable;
     private javax.swing.JList endTimeList;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel;
@@ -448,10 +508,12 @@ public class AddNewProductForm extends JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel newProductPanel;
+    private javax.swing.JButton nondurrable;
     private javax.swing.JButton productAddNewBtn;
     private javax.swing.JLabel productImageLbl;
     private org.jdesktop.swingx.JXDatePicker productStartDatePicker;
