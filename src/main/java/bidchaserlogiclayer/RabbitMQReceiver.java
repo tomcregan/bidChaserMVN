@@ -9,7 +9,7 @@ import java.util.logging.*;
  *
  * @author tommy
  * 
- * Testing Jenkins
+ * Testing Jenkins1
  */
 public class RabbitMQReceiver {
     
