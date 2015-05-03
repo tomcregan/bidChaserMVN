@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 /**
  *
  * @author tommy
+ * 
+ *
  */
 public class AddNewProductHandlerTest {
     

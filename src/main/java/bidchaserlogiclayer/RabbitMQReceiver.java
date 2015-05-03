@@ -8,6 +8,8 @@ import java.util.logging.*;
 /**
  *
  * @author tommy
+ * 
+ * Testing Jenkins
  */
 public class RabbitMQReceiver {
     
